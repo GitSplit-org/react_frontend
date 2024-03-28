@@ -4,7 +4,7 @@ import project01 from '../assets/wallhaven.jpg';
 import project02 from '../assets/zyvwyy.jpg';
 import project03 from '../assets/jxyopy.jpg';
 import project04 from '../assets/sunset-over-a-forest-lake-bright-colors-colorful-grass-flowers-setting-sun-clouds-in-the-styl-397835753.png';
-import Navbar from "../components/navbar";
+
 const projects = [
   {
     name: 'Project 1',
@@ -54,7 +54,7 @@ const Projects = () => {
 
   return (
     <>
-    <Navbar />
+ 
       <div className="container mx-auto py-8">
         <div className="bg-cover bg-center h-64 flex items-center justify-center text-white" style={{ backgroundImage: "url('https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?auto=compress&cs=tinysrgb&w=600')" }}>
           <h1 className="text-3xl font-bold">Projects</h1>
