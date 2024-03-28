@@ -1,10 +1,13 @@
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar"
+import { GlobeDemo } from "../components/demoglobe";
 const Home = () => {
   return (
     <>
     <Navbar/>
+    <GlobeDemo/>
+
     
-    <div className="flex flex-col items-center justify-center h-screen pb-20">
+    <div className="flex flex-col items-center justify-center h-screen pb-20 bg-black text-white">
       <h1 className="text-4xl font-bold mb-4">Support Open Source Development</h1>
       <p className="text-2xl">Donate to GitHub Projects</p>
       <div className="pt-2">
@@ -13,7 +16,7 @@ const Home = () => {
       </div>
       
     </div>
-    <div className=" bg-slate-400 h-screen w-screen">
+    <div className=" bg-slate-400 h-screen ">
       <div className="flex h-5/6 pl-20 pr-20 pt-10 ">
         <div className="w-1/2  p-4 ease-in-out bg-gradient-to-t from-white to-white hover:to-lime-100">
           {/* Content for the left pane */}
@@ -41,7 +44,7 @@ const Home = () => {
         </div>
       </div>
       </div>
-      <div className="w-screen h-screen pt-10 ">
+      <div className=" h-screen pt-10 ">
 
         <p className="text-4xl font-extrabold text-cyan-900 flex justify-center ">Raise money with full transparency</p>
         <p className=" text-lg font-bold  pt-2 flex justify-center"> We do the paperwork so you can focus on your mission.</p>
