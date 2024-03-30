@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from React Router
+import { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link from React Router
+import { ConnectWallet } from "@thirdweb-dev/react";
 
 const Navbar = () => {
   const [activeButton, setActiveButton] = useState(null);
@@ -9,9 +10,11 @@ const Navbar = () => {
   };
 
   // Define a base button color and an active button color for consistency
-  const buttonBaseStyle = "py-2 px-4 rounded-lg transition duration-300 ease-in-out";
+  const buttonBaseStyle =
+    "py-2 px-4 rounded-lg transition duration-300 ease-in-out";
   const buttonActiveColor = "bg-indigo-600 text-white";
-  const buttonInactiveColor = "bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600";
+  const buttonInactiveColor =
+    "bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600";
 
   return (
     <nav className="bg-white border-b border-gray-200 shadow-sm dark:bg-gray-900 p-2">
@@ -37,19 +40,21 @@ const Navbar = () => {
           <Link
             to="/addproject"
             className={`${buttonBaseStyle} ${
-              activeButton === 'add' ? buttonActiveColor : buttonInactiveColor
+              activeButton === "add" ? buttonActiveColor : buttonInactiveColor
             }`}
-            onClick={() => handleButtonClick('add')}
+            onClick={() => handleButtonClick("add")}
           >
             Add Project
           </Link>
-          
+
           <Link
             to="/support"
             className={`${buttonBaseStyle} ${
-              activeButton === 'support' ? buttonActiveColor : buttonInactiveColor
+              activeButton === "support"
+                ? buttonActiveColor
+                : buttonInactiveColor
             }`}
-            onClick={() => handleButtonClick('support')}
+            onClick={() => handleButtonClick("support")}
           >
             Support a Project
           </Link>
@@ -57,22 +62,16 @@ const Navbar = () => {
           <Link
             to="/login"
             className={`${buttonBaseStyle} ${
-              activeButton === 'login' ? buttonActiveColor : buttonInactiveColor
+              activeButton === "login" ? buttonActiveColor : buttonInactiveColor
             }`}
-            onClick={() => handleButtonClick('login')}
+            onClick={() => handleButtonClick("login")}
           >
             Login
           </Link>
 
-          <Link
-            to="/connect-wallet"
-            className={`${buttonBaseStyle} ${
-              activeButton === 'connect' ? buttonActiveColor : buttonInactiveColor
-            }`}
-            onClick={() => handleButtonClick('connect')}
-          >
-            Connect Wallet
-          </Link>
+          <div>
+            <ConnectWallet theme={"dark"} modalSize={"wide"} />
+          </div>
         </div>
       </div>
     </nav>
@@ -80,4 +79,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-   

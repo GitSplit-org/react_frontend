@@ -1,11 +1,13 @@
-
 import React from "react";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
-const World = dynamic(() => import("../components/ui/globe").then((m) => m.World), {
-  ssr: false,
-});
+// const World = dynamic(
+//   () => import("../components/ui/globe").then((m) => m.World),
+//   {
+//     ssr: false,
+//   }
+// );
 
 export function GlobeDemo() {
   const globeConfig = {
@@ -415,7 +417,10 @@ export function GlobeDemo() {
             Support the Open source project
           </h2>
           <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-3xl  mt-2 mx-auto">
-          At Gitsplit, we believe in the incredible power of community and open-source. Our mission is simple: to provide a dynamic platform where open-source creators can secure the funding they need to bring their innovative ideas to life and keep their projects thriving.
+            At Gitsplit, we believe in the incredible power of community and
+            open-source. Our mission is simple: to provide a dynamic platform
+            where open-source creators can secure the funding they need to bring
+            their innovative ideas to life and keep their projects thriving.
           </p>
         </motion.div>
         <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
