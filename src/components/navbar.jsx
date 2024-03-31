@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"; // Import Link from React Router
 import { ConnectWallet } from "@thirdweb-dev/react";
+//import { supabase } from "../client";
 
 const Navbar = () => {
   const [activeButton, setActiveButton] = useState(null);
