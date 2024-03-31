@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import AddProject from "./pages/AddProject";
 import OpenProject from "./pages/openProject"; // corrected the import path
@@ -14,11 +20,37 @@ import {
   embeddedWallet,
 } from "@thirdweb-dev/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/projects",
+    element: <Projects />,
+  },
+  {
+    path: "/addproject",
+    element: <AddProject />,
+  },
+  {
+    path: "/project",
+    element: <OpenProject />,
+  },
+  {
+    path: "/withdraw",
+    element: <Withdraw />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+]);
 function App() {
   const queryClient = new QueryClient();
   return (
     <>
-      <div className="bg-black h-screen">
+      <div className="bg-black">
         <QueryClientProvider client={queryClient}>
           <ThirdwebProvider
             activeChain="ethereum"
@@ -35,16 +67,7 @@ function App() {
               }),
             ]}
           >
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/addproject" element={<AddProject />} />
-                <Route path="/openproject" element={<OpenProject />} />
-                <Route path="/withdraw" element={<Withdraw />} />
-                <Route path="/login" element={<Login />} />
-              </Routes>
-            </BrowserRouter>
+            <RouterProvider router={router} />
           </ThirdwebProvider>
         </QueryClientProvider>
       </div>
