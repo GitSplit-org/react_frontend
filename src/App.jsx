@@ -1,16 +1,11 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import AddProject from "./pages/AddProject";
 import OpenProject from "./pages/openProject"; // corrected the import path
 import Withdraw from "./pages/withdraw";
 import Login from "./pages/login";
 import Projects from "./pages/projects"; // corrected the component name
+import ProfilePage from "./pages/Profile";
 import {
   ThirdwebProvider,
   metamaskWallet,
@@ -45,6 +40,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
+  {
+    path: "/profile",
+    element: <ProfilePage />,
+  },
 ]);
 function App() {
   const queryClient = new QueryClient();
@@ -53,7 +52,7 @@ function App() {
       <div className="bg-black">
         <QueryClientProvider client={queryClient}>
           <ThirdwebProvider
-            activeChain="ethereum"
+            activeChain="mumbai"
             clientId="1971b4ffc7b4410e350ba34c8694d7df"
             supportedWallets={[
               metamaskWallet(),

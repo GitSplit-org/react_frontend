@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom"; // Import Link from React Router
 import { ConnectWallet } from "@thirdweb-dev/react";
 //import { supabase } from "../client";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [activeButton, setActiveButton] = useState(null);
@@ -29,10 +31,7 @@ const Navbar = () => {
           />
           <div className="text-xl font-semibold space-x-2 dark:text-white">
             <span>GitSplit</span>
-            <span className="text-gray-400">|</span>
-            <span className="text-lg text-gray-700 dark:text-gray-300">
-              <Link to="/projects">Explorer</Link>
-            </span>
+            {/* <span className="text-gray-400">|</span> */}
           </div>
         </Link>
 
@@ -49,7 +48,7 @@ const Navbar = () => {
           </Link>
 
           <Link
-            to="/support"
+            to="/projects"
             className={`${buttonBaseStyle} ${
               activeButton === "support"
                 ? buttonActiveColor
@@ -57,7 +56,7 @@ const Navbar = () => {
             }`}
             onClick={() => handleButtonClick("support")}
           >
-            Support a Project
+            Explore
           </Link>
 
           <Link
@@ -73,6 +72,14 @@ const Navbar = () => {
           <div>
             <ConnectWallet theme={"dark"} modalSize={"wide"} />
           </div>
+          <Link to="/profile" onClick={() => handleButtonClick("login")}>
+            <FontAwesomeIcon
+              className="pl-3"
+              icon={faUser}
+              size="lg"
+              color="white"
+            />
+          </Link>
         </div>
       </div>
     </nav>

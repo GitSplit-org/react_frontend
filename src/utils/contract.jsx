@@ -1,11 +1,11 @@
-import { getContract, createThirdwebClient } from "thirdweb";
-import { mumbai } from "thirdweb/chains";
+import { getContract, createThirdwebClient } from "@thirdweb-dev/react";
+import { mumbai } from "@thirdweb-dev/chains";
 
 const client = createThirdwebClient({
   clientId: "1971b4ffc7b4410e350ba34c8694d7df",
 });
 // get a contract
-export const contract = getContract({
+export const Contract = getContract({
   // the client you have created via `createThirdwebClient()`
   client,
   // the chain the contract is deployed on

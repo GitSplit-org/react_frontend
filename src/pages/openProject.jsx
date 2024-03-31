@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,21 +7,30 @@ import {
   faFacebook,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import Navbar from "../components/navbar";
+import { ethers } from "ethers";
+import { abi } from "../abi/abi";
 
 const ProjectPage = () => {
+  // const web3 = new Web3(window.ethereum);
+  // const contract = new web3.eth.Contract(
+  //   abi,
+  //   "0x49cfeE607B35Af7d3d8D957Be30601a2576FC487"
+  // );
   const [project, setProject] = useState(null);
   const [contributors, setContributors] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  const [RepoData, setRepoData] = useState();
+  // const [RepoData, setRepoData] = useState();
+  const [isDonationFormOpen, setIsDonationFormOpen] = useState(false);
+  const [donationAmount, setDonationAmount] = useState("");
 
   const fetchRepoData = async (url) => {
     try {
       const urlParts = url.split("/");
       const owner = urlParts[3]; // GitSplit-org
       const repo = urlParts[4]; // Next_frontend
-      const token =
-        "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";
+      const token = import.meta.env.VITE_GITHUB_KEY;
       const headers = {
         Authorization: `token ${token}`,
       };
@@ -30,7 +39,7 @@ const ProjectPage = () => {
         `https://api.github.com/repos/${owner}/${repo}`,
         { headers }
       );
-      setRepoData(response.data);
+      // setRepoData(response.data);
 
       const responseContributors = await axios.get(
         response.data.contributors_url,
@@ -61,9 +70,10 @@ const ProjectPage = () => {
       setContributors(contributorsWithPercentage);
     } catch (error) {
       console.error("Error fetching repository data:", error);
-      setRepoData(null);
+      // setRepoData(null);
     }
   };
+
   const fetchProject = async () => {
     try {
       const response = await axios.get(
@@ -77,94 +87,192 @@ const ProjectPage = () => {
       console.error("Error fetching project:", error);
     }
   };
+
   useEffect(() => {
     fetchProject();
   }, []);
 
+  const handleDonateButtonClick = () => {
+    setIsDonationFormOpen(true);
+  };
+
+  const handleDonateFormSubmit = async (e) => {
+    e.preventDefault();
+    // Handle donation form submission
+    console.log("Donation amount:", donationAmount);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      "0x49cfeE607B35Af7d3d8D957Be30601a2576FC487",
+      abi,
+      signer
+    );
+    // const usernames = ["user1", "user2"];
+    // const amountsInWei = [
+    //   ethers.utils.parseEther("1"),
+    //   ethers.utils.parseEther("2"),
+    // ];
+    //
+    const split = [];
+    const usernames = [];
+    contributors.forEach((contributor) => {
+      const splitAmount = (
+        (contributor.percentage / 100) *
+        donationAmount
+      ).toFixed(2);
+      console.log(splitAmount);
+      split.push(ethers.utils.parseEther(splitAmount));
+      usernames.push(contributor.login);
+      console.log(usernames);
+      console.log(split);
+    });
+
+    //
+    try {
+      const tx = await contract.deposit(usernames, split, {
+        value: split.reduce((a, b) => a.add(b), ethers.BigNumber.from(0)),
+      });
+      await tx.wait();
+      console.log("Result:", tx);
+      // Reset donation form state
+      setDonationAmount("");
+      setIsDonationFormOpen(false);
+    } catch (error) {
+      console.error("Error calling contract function:", error);
+    }
+  };
+
   if (!project) {
-    return <div>Loading...</div>;
+    return <div className="bg-black text-white min-h-screen">Loading...</div>;
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      {/* Cover Photo */}
-      <div
-        className="h-40 bg-cover pl-5 pt-5 bg-center bg-gray-600"
-        style={{ backgroundImage: `url(${project.image})` }}
-      >
-        {/* Profile Picture */}
-        <div className="mx-auto mt-16">
-          <img
-            src={project.image}
-            alt="Profile"
-            className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
-          />
+    <>
+      <Navbar />
+      <div className="bg-black text-white min-h-screen">
+        {/* Cover Photo */}
+        <div
+          className="h-40 bg-cover pl-5 pt-5 bg-center bg-gray-800"
+          style={{ backgroundImage: `url(${project.image})` }}
+        >
+          {/* Profile Picture */}
+          <div className="mx-auto mt-16">
+            <img
+              src={project.image}
+              alt="Profile"
+              className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
+            />
+          </div>
         </div>
-      </div>
-
-      <div className="container mx-auto py-12 pt-20">
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="px-6 py-4">
-            <div className="flex items-center justify-between">
-              <h1 className="text-3xl font-bold">{project.name}</h1>
-              <div className="flex space-x-4">
-                <a
-                  href={project.instagram}
-                  className="text-gray-600 hover:text-blue-500"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Instagram
-                  <FontAwesomeIcon icon={faInstagram} size="lg" />
-                </a>
-                <a
-                  href={project.facebook}
-                  className="text-gray-600 hover:text-blue-500"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Facebook
-                  <FontAwesomeIcon icon={faFacebook} size="lg" />
-                </a>
-                <a
-                  href={project.twitter}
-                  className="text-gray-600 hover:text-blue-500"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Twitter
-                  <FontAwesomeIcon icon={faTwitter} size="lg" />
-                </a>
+        <div className="container mx-auto py-12 pt-20">
+          <div className="max-w-4xl mx-auto bg-gray-900 rounded-lg shadow-md overflow-hidden">
+            <div className="px-6 py-4">
+              <div className="flex items-center justify-between">
+                <h1 className="text-3xl font-bold">{project.name}</h1>
+                <div className="flex space-x-4">
+                  <a
+                    href={project.instagram}
+                    className="text-gray-400 hover:text-blue-500"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Instagram
+                    <FontAwesomeIcon icon={faInstagram} size="lg" />
+                  </a>
+                  <a
+                    href={project.facebook}
+                    className="text-gray-400 hover:text-blue-500"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Facebook
+                    <FontAwesomeIcon icon={faFacebook} size="lg" />
+                  </a>
+                  <a
+                    href={project.twitter}
+                    className="text-gray-400 hover:text-blue-500"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Twitter
+                    <FontAwesomeIcon icon={faTwitter} size="lg" />
+                  </a>
+                </div>
               </div>
+              <p className="text-gray-400 mt-2">{project.description}</p>
             </div>
-            <p className="text-gray-600 mt-2">{project.description}</p>
-          </div>
-          <div className="bg-gray-200 px-6 py-4">
-            <h2 className="text-lg font-semibold mb-2">Contributors</h2>
-            <ul>
-              {contributors.map((contributor, index) => (
-                <li
-                  key={index}
-                  className="flex items-center py-2 border-b border-gray-300"
-                >
-                  <img
-                    src={contributor.contributor.avatar_url}
-                    alt={contributor.login}
-                    className="w-10 h-10 rounded-full mr-4"
-                  />
-                  <div>
-                    <p className="font-semibold">{contributor.login}</p>
-                    <p className="text-gray-600">
-                      {contributor.contributions} contributions
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <div className="bg-gray-800 px-6 py-4">
+              <h2 className="text-lg font-semibold mb-2">Contributors</h2>
+              <ul>
+                {contributors.map((contributor, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center py-2 border-b border-gray-700"
+                  >
+                    <img
+                      src={contributor.contributor.avatar_url}
+                      alt={contributor.login}
+                      className="w-10 h-10 rounded-full mr-4"
+                    />
+                    <div>
+                      <p className="font-semibold">{contributor.login}</p>
+                      <p className="text-gray-400">
+                        {contributor.contributions} contributions
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
+        {/* Donation Button */}
+        <div className="w-auto flex justify-center items-center">
+          <button
+            onClick={handleDonateButtonClick}
+            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 z-10"
+          >
+            Donate
+          </button>
+        </div>
+        {/* Donation Form Overlay */}
+        {isDonationFormOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+            <form
+              onSubmit={handleDonateFormSubmit}
+              className="bg-gray-800 py-16 px-12 rounded-md shadow-lg  flex flex-col justify-center"
+            >
+              <h2 className="text-2xl font-semibold mb-4 text-white pb-4">
+                Donate
+              </h2>
+              <input
+                type="number"
+                value={donationAmount}
+                onChange={(e) => setDonationAmount(e.target.value)}
+                placeholder="Enter donation amount"
+                className=" text-black w-full border border-gray-700 rounded-md px-3 py-2 mb-8 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setIsDonationFormOpen(false)}
+                  className="text-gray-400 hover:text-gray-200 mr-4"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
+                >
+                  Confirm
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 
