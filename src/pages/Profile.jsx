@@ -5,7 +5,6 @@ import axios from "axios";
 import { ethers } from "ethers";
 import { abi } from "../abi/abi";
 import { useAddress } from "@thirdweb-dev/react";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
@@ -38,6 +37,7 @@ const ProfilePage = () => {
         { headers }
       );
       setUserData(response.data);
+      console.log(response.data);
       await fetchBalance(username);
       await checkUsernameWallet(username);
     } catch (error) {
@@ -78,7 +78,6 @@ const ProfilePage = () => {
       );
       // Call the getBalance function of the contract
       const wallet = await contract.getAddressForUsername(username);
-      console.log(wallet);
       if (wallet == "0x0000000000000000000000000000000000000000") {
         setWalletLinked(false);
       } else if (wallet == Address) {
@@ -89,16 +88,25 @@ const ProfilePage = () => {
     }
   }
 
-  async function handleWalletConnect(username) {
+  async function handleWalletConnect() {
     try {
       // Make a POST request to /user/assign
-      const response = await axios.post("/user/assign", {
-        username: userData.name,
-        walletAddress: Address, // Assuming Address holds the wallet address
-      });
-
-      // Log the response
-      console.log("Assignment response:", response.data);
+      console.log(address);
+      if (address == 0x0000000000000000000000000000000000000000) {
+        return;
+      }
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}user/assign`,
+        {
+          username: userData.login,
+          walletAddress: Address,
+        }
+      );
+      if (response.status == 200) {
+        alert("wallet linked");
+        // Log the response
+        console.log("Assignment response:", response.data);
+      }
     } catch (error) {
       console.error("Error fetching balance:", error);
     }
@@ -125,7 +133,7 @@ const ProfilePage = () => {
     );
     try {
       const tx = await contract.withdraw(
-        userData?.name,
+        userData?.login,
         ethers.utils.parseEther(withdrawalAmount)
       );
       await tx.wait();
