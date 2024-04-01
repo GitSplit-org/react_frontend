@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import AddProject from "./pages/AddProject";
 import OpenProject from "./pages/openProject"; // corrected the import path
@@ -15,36 +15,36 @@ import {
   embeddedWallet,
 } from "@thirdweb-dev/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/projects",
-    element: <Projects />,
-  },
-  {
-    path: "/addproject",
-    element: <AddProject />,
-  },
-  {
-    path: "/project",
-    element: <OpenProject />,
-  },
-  {
-    path: "/withdraw",
-    element: <Withdraw />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/profile",
-    element: <ProfilePage />,
-  },
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <Home />,
+//   },
+//   {
+//     path: "/projects",
+//     element: <Projects />,
+//   },
+//   {
+//     path: "/addproject",
+//     element: <AddProject />,
+//   },
+//   {
+//     path: "/project",
+//     element: <OpenProject />,
+//   },
+//   {
+//     path: "/withdraw",
+//     element: <Withdraw />,
+//   },
+//   {
+//     path: "/login",
+//     element: <Login />,
+//   },
+//   {
+//     path: "/profile",
+//     element: <ProfilePage />,
+//   },
+// ]);
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -66,7 +66,17 @@ function App() {
               }),
             ]}
           >
-            <RouterProvider router={router} />
+            <Router>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/addproject" element={<AddProject />} />
+                <Route path="/project" element={<OpenProject />} />
+                <Route path="/withdraw" element={<Withdraw />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/profile" element={<ProfilePage />} />
+              </Routes>
+            </Router>
           </ThirdwebProvider>
         </QueryClientProvider>
       </div>
