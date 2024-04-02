@@ -30,7 +30,7 @@ const ProfilePage = () => {
     try {
       const token = import.meta.env.VITE_GITHUB_KEY;
       const headers = {
-        Authorization: `token ${token}`,
+        Authorization: `Bearer ${token}`,
       };
       const response = await axios.get(
         `https://api.github.com/users/${username}`,

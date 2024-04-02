@@ -32,7 +32,7 @@ const ProjectPage = () => {
       const repo = urlParts[4]; // Next_frontend
       const token = import.meta.env.VITE_GITHUB_KEY;
       const headers = {
-        Authorization: `token ${token}`,
+        Authorization: `Bearer ${token}`,
       };
 
       const response = await axios.get(
