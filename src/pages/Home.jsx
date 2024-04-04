@@ -1,10 +1,124 @@
 import Navbar from "../components/navbar";
+
+import video from '../assets/landingpage.mp4';
+
+import { Animator, ScrollContainer, ScrollPage, batch, Fade,FadeUp, FadeIn, FadeOut, Move, MoveIn, MoveOut, Sticky, StickyIn, StickyOut, Zoom, ZoomIn, ZoomOut } from "react-scroll-motion";
 // import { GlobeDemo } from "../components/demoglobe";
+
+
 const Home = () => {
+ 
+  const ZoomOutScrollIN = batch(StickyIn(), FadeIn(), ZoomIn());
+  const ZoomInScrollOut = batch(StickyOut(), FadeIn(), ZoomOut(),  );
+  const changeXandY = batch(
+    StickyOut(), 
+    Move(ZoomOut(-10, 100, -100), -10, -500) // Move to top-right after centered
+  );
+  
+
+  
+  
+
   return (
+  
+    
     <>
       <Navbar />
       {/* <GlobeDemo/> */}
+      <ScrollContainer>
+  <ScrollPage>
+    <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -250))}>
+      <span className=" bg-gradient-to-r from-white  to-purple-400 inline-block text-transparent text-center bg-clip-text text-9xl font-bold h-52 w-screen "> Gitsplit <br/> 
+      <p className="text-6xl pt-10  text-purple-500  ">Where Contributions Matter, Funds Flow Fairly.</p>   </span>
+    </Animator>
+  </ScrollPage>
+  <ScrollPage >
+ 
+   <Animator animation={ZoomInScrollOut} className="flex  justify-center items-center ">
+       <span style={{ transform: 'translateZ(0px) translateX(0%) translateY(0%)', position: 'relative', zIndex: 0 }}>
+        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
+         </video>
+       </span>
+       </Animator> 
+      </ScrollPage>
+      {/* <Animator animation={ZoomInScrollOut} className="flex justify-center items-center h-screen"> 
+      <span className=" relative " style={{ transform: 'translateZ(0px) translateX(0%) translateY(0%)', zIndex: -20 ,  }}>
+        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
+        </video>
+      </span>
+      </Animator>
+      <Animator animation={ZoomInScrollOut} className="flex justify-center items-center h-screen">
+      <span style={{ transform: 'translateZ(0px) translateX(250%) translateY(150%)', position: 'relative', zIndex: 2}}>
+        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
+        </video>
+       
+      </span>
+      </Animator>
+      <Animator animation={ZoomInScrollOut} className="flex justify-center items-center h-screen">
+      <span style={{ transform: 'translateZ(-150px) translateX(150%) translateY(-150%)', position: 'relative', zIndex: -20 }}>
+        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
+        </video>
+      </span>
+      </Animator>
+      <Animator animation={ZoomInScrollOut} className="flex justify-center items-center h-screen">
+      <span style={{ transform: 'translateZ(-150px) translateX(-450%) translateY(-150%)', position: 'relative', zIndex: -20 }}>
+        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
+        </video>
+      </span>
+      </Animator> */}
+      {/* <Animator animation={ZoomOutScrollIN} className="flex justify-center items-center h-screen">
+      <span style={{ transform: 'translateZ(-150px) translateX(50%)', position: 'relative', zIndex: -20  }}>
+        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
+        </video>
+      </span>
+      </Animator> */}
+      {/* <Animator animation={ZoomOutScrollIN} className="flex justify-center items-center h-screen">
+      <span style={{ transform: 'translateZ(-150px) translateX(50%)', position: 'relative', zIndex: -20  }}>
+        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
+        </video>
+      </span>
+      </Animator>
+      <Animator animation={ZoomOutScrollIN} className="flex justify-center items-center h-screen">
+      <span style={{ transform: 'translateZ(-150px) translateX(50%)', position: 'relative', zIndex: -20  }}>
+        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
+        </video>
+      </span>
+      </Animator>
+      
+      <Animator animation={ZoomOutScrollIN} className="flex justify-center items-center h-screen">
+      <span style={{ transform: 'translateZ(-150px) translateX(50%)', position: 'relative', zIndex: -20  }}>
+        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
+        </video>
+      </span>
+    </Animator> */}
+
+  
+  <ScrollPage>
+    <Animator animation={batch(StickyIn(), FadeIn())}>
+      <span className=" text-9xl flex justify-center   ">BlockChain</span>
+    </Animator>
+  </ScrollPage>
+  <ScrollPage>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }} >
+      <span style={{ fontSize: "40px" }}>
+        <Animator animation={MoveIn(-1000, 0)}>Hello Guys 👋🏻</Animator>
+        <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>
+        - I'm Dante Chun -
+        <Animator animation={MoveOut(1000, 0)}>Good bye ✋🏻</Animator>
+        <Animator animation={MoveOut(-1000, 0)}>See you 💛</Animator>
+      </span>
+    </div>
+  </ScrollPage>
+  <ScrollPage>
+    <Animator animation={batch(Fade(), Sticky())}>
+      <span style={{ fontSize: "40px" }}>Done</span>
+      <br/>
+      <span style={{ fontSize: "30px" }}>
+        There's FadeAnimation, MoveAnimation, StickyAnimation, ZoomAnimation
+      </span>
+    </Animator>
+  </ScrollPage>
+</ScrollContainer>
 
       <div className="flex flex-col items-center justify-center h-screen pb-20 bg-black text-white">
         <h1 className="text-4xl font-bold mb-4">
@@ -63,7 +177,8 @@ const Home = () => {
         </div>
       </div>
     </>
-  );
-};
+
+)
+  }
 
 export default Home;

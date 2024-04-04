@@ -2,10 +2,21 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ScrollPage } from "react-scroll-motion";
+import SocialDropdown from '../utils/socialDropdown';
+import { faDonate ,faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+
+
+
+import LikeButton from "../utils/likebutton";
 import {
   faInstagram,
   faFacebook,
-  faTwitter,
+  faXTwitter,
+  
+  faSquareXTwitter,
+  
+
 } from "@fortawesome/free-brands-svg-icons";
 import Navbar from "../components/navbar";
 import { ethers } from "ethers";
@@ -17,9 +28,11 @@ const ProjectPage = () => {
   //   abi,
   //   "0x49cfeE607B35Af7d3d8D957Be30601a2576FC487"
   // );
+  
   const [project, setProject] = useState(null);
   const [contributors, setContributors] = useState([]);
   const [searchParams] = useSearchParams();
+  const [totalContributors, setTotalContributors] = useState(0);
   const id = searchParams.get("id");
   // const [RepoData, setRepoData] = useState();
   const [isDonationFormOpen, setIsDonationFormOpen] = useState(false);
@@ -46,6 +59,8 @@ const ProjectPage = () => {
         { headers } // Pass headers for authentication
       );
       const contributorsData = responseContributors.data;
+      const totalContributorsCount = contributorsData.length;
+     
 
       // Calculate total number of commits
       const totalCommits = contributorsData.reduce(
@@ -65,9 +80,11 @@ const ProjectPage = () => {
           ).toFixed(2),
         })
       );
+      
 
       console.log(contributorsWithPercentage);
       setContributors(contributorsWithPercentage);
+      setTotalContributors(totalContributorsCount); 
     } catch (error) {
       console.error("Error fetching repository data:", error);
       // setRepoData(null);
@@ -148,23 +165,120 @@ const ProjectPage = () => {
 
   return (
     <>
+   
       <Navbar />
-      <div className="bg-black text-white min-h-screen">
+      <div className="mt-16 mr-16 ml-16">
+      <div className=" text-white max-h-full bg-black rounded-[50px] p-2  ">
         {/* Cover Photo */}
         <div
-          className="h-40 bg-cover pl-5 pt-5 bg-center bg-gray-800"
-          style={{ backgroundImage: `url(${project.image})` }}
-        >
-          {/* Profile Picture */}
-          <div className="mx-auto mt-16">
-            <img
-              src={project.image}
-              alt="Profile"
-              className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
-            />
+  className="h-50 bg-cover pl-5 pt-5 bg-center bg-gray-800 rounded-[50px] relative"
+  style={{ backgroundImage: `url(${project.image})` }}
+>
+  {/* Fade-out overlay */}
+  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-800  "></div>
+
+  {/* Profile Picture */}
+  <div className="mx-10 mt-52   h-72 relative z-10  flex flex-col justify-end pb-10 ">
+  <h1 className="text-5xl   font-bold">{project.name}</h1>
+    {/* <img
+      src={project.image}
+      alt="Profile"
+      className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
+    /> */}
+  </div>
+</div>
+<div className="flex  bg-[#171123]">
+  
+      <div className="flex-1 overflow-y-auto scroll-smooth focus:scroll-auto h-screen mx-10 ">
+        {/* Left side content */}
+        <div className="p-4">
+          <h1 className="text-2xl font-bold text-violet-200 pt-10 w-auto">Where Contributions Matter, Funds Flow Fairly</h1>
+          <div className="mt-4 flex  font-bold">
+            <div  className="text-md text-purple-400 w-1/3">
+              Category<br/>
+
+              <div className="text-white">Blockchain</div>
+            </div>
+            <div className="text-md text-purple-400 w-1/3">
+              Published 
+              <div className="text-white">04/03/2024</div>
+            </div>
+            <div className="text-md text-purple-400 w-1/3">
+             contributors<br/>
+             <div  className="text-white">{totalContributors}</div>
+             
+            </div>
+            </div>
+            <div className="h-auto pt-10"> 
+            <div className="text-3xl">Description </div>
+            <div className="p-2">{project.description}</div>
+
+            
+            
+             </div>
+        </div>
+      </div>
+      
+
+      <div className="w-1/3 h-screen p-4 bg-[#171123] ">
+        {/* Right side content */}
+        <div className="pt-10 flex justify-center items-center gap-5 ">
+          <div className="p-1 w-2/3 font-bold  bg-[#2d2145]"><LikeButton initialLikes={0}  /></div>
+          <div className="w-1/5 p-1 flex justify-center bg-[#2d2145]">
+
+          <FontAwesomeIcon icon={faXTwitter} className="text-4xl p-1.5" /></div>
+
+        
+          <div className="p-1 w-1/5 bg-[#2d2145] flex justify-center">
+            <SocialDropdown/>
+           
           </div>
         </div>
-        <div className="container mx-auto py-12 pt-20">
+      
+       
+        
+        <div className="flex text-2xl  items-center mt-5   bg-[#2d2145]  justify-center ">
+       
+      <button
+        onClick={handleDonateButtonClick}
+        className="bg-[#2d2145] text-white p-5 w-full   rounded-md hover:bg-[#584186] transition duration-300  flex gap-20 justify-evenly items-center"
+      >
+         <FontAwesomeIcon icon={faDonate}  className="" />
+         {/* Donate Icon */}
+        Donate
+        <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+      </button>
+     
+    </div>
+    <div className="bg-[#2d2145]px-6 py-4">
+              <h2 className="text-lg font-semibold mb-2">Contributors</h2>
+              <ul>
+                {contributors.map((contributor, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center py-2 border-b border-gray-700"
+                  >
+                    <img
+                      src={contributor.contributor.avatar_url}
+                      alt={contributor.login}
+                      className="w-10 h-10 rounded-full mr-4"
+                    />
+                    <div>
+                      <p className="font-semibold">{contributor.login}</p>
+                      <p className="text-gray-400">
+                        {contributor.contributions} contributions
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+        
+      </div>
+    </div>
+  
+
+        {/* <div className="container mx-auto  py-12 pt-20">
           <div className="max-w-4xl mx-auto bg-gray-900 rounded-lg shadow-md overflow-hidden">
             <div className="px-6 py-4">
               <div className="flex items-center justify-between">
@@ -225,16 +339,9 @@ const ProjectPage = () => {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* Donation Button */}
-        <div className="w-auto flex justify-center items-center">
-          <button
-            onClick={handleDonateButtonClick}
-            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 z-10"
-          >
-            Donate
-          </button>
-        </div>
+        
         {/* Donation Form Overlay */}
         {isDonationFormOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
@@ -271,6 +378,7 @@ const ProjectPage = () => {
             </form>
           </div>
         )}
+      </div>
       </div>
     </>
   );

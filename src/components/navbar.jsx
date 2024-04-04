@@ -12,15 +12,8 @@ const Navbar = () => {
     setActiveButton(buttonName);
   };
 
-  // Define a base button color and an active button color for consistency
-  const buttonBaseStyle =
-    "py-2 px-4 rounded-lg transition duration-300 ease-in-out";
-  const buttonActiveColor = "bg-indigo-600 text-white";
-  const buttonInactiveColor =
-    "bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600";
-
   return (
-    <nav className="bg-white border-b border-gray-200 shadow-sm dark:bg-gray-900 p-2">
+    <nav className="bg-white border-b border-gray-200 shadow-sm dark:bg-black p-2">
       <div className="container mx-auto px-4 py-2 md:flex md:items-center md:justify-between">
         {/* GitSplit Logo */}
         <Link to="/" className="flex items-center space-x-2">
@@ -31,17 +24,16 @@ const Navbar = () => {
           />
           <div className="text-xl font-semibold space-x-2 dark:text-white">
             <span>GitSplit</span>
-            {/* <span className="text-gray-400">|</span> */}
           </div>
         </Link>
 
         {/* Navbar Links */}
-        <div className="flex flex-col md:flex-row md:items-center md:space-x-2 mt-3 md:mt-0">
+        <div className="flex flex-col md:flex-row md:items-center md:space-x-2 mt-3 md:mt-0  gap-9">
           <Link
             to="/addproject"
-            className={`${buttonBaseStyle} ${
-              activeButton === "add" ? buttonActiveColor : buttonInactiveColor
-            }`}
+            className={`transition duration-300 ease-in-out ${
+              activeButton === "add" ? "text-indigo-600" : "text-gray-800"
+            } hover:text-gray-600 dark:text-white dark:hover:text-gray-400`}
             onClick={() => handleButtonClick("add")}
           >
             Add Project
@@ -49,11 +41,9 @@ const Navbar = () => {
 
           <Link
             to="/projects"
-            className={`${buttonBaseStyle} ${
-              activeButton === "support"
-                ? buttonActiveColor
-                : buttonInactiveColor
-            }`}
+            className={`transition duration-300 ease-in-out ${
+              activeButton === "support" ? "text-indigo-600" : "text-gray-800"
+            } hover:text-gray-600 dark:text-white dark:hover:text-gray-400`}
             onClick={() => handleButtonClick("support")}
           >
             Explore
@@ -61,9 +51,9 @@ const Navbar = () => {
 
           <Link
             to="/login"
-            className={`${buttonBaseStyle} ${
-              activeButton === "login" ? buttonActiveColor : buttonInactiveColor
-            }`}
+            className={`transition duration-300 ease-in-out ${
+              activeButton === "login" ? "text-indigo-600" : "text-gray-800"
+            } hover:text-gray-600 dark:text-white dark:hover:text-gray-400`}
             onClick={() => handleButtonClick("login")}
           >
             Login

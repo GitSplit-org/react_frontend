@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/navbar";
 import { useNavigate } from "react-router-dom";
+import { BackgroundGradient } from "../utils/backgrounGradient";
+import { IconAppWindow } from "@tabler/icons-react";
+
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -95,27 +98,34 @@ const Projects = () => {
     );
   };
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-    console.log(`Searching for ${searchTerm}`);
-  };
+  // const handleSearch = (event) => {
+  //   setSearchTerm(event.target.value);
+  //   console.log(`Searching for ${searchTerm}`);
+  // };
 
   return (
     <>
       <Navbar />
+
+
+
       <div className="container mx-auto py-8 px-4">
         <div
-          className="bg-cover bg-center h-64 flex items-center justify-center text-white"
-          style={{
-            backgroundImage:
-              "url('https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?auto=compress&cs=tinysrgb&w=600')",
-          }}
+          className="bg-cover flex flex-col justify-center  items-center bg-center h-64  text-white"
+          
         >
-          <h1 className="text-3xl font-bold">Projects</h1>
+          <h1 className="text-6xl w-auto font-bold">Find a Projects
+          </h1>
+          <div> <p className="text-[#c2aeec] text-xl  mt-4">Check out the projects linked with us</p></div>
+         
+         
         </div>
+        
 
         <div className="container mx-auto mt-20">
-          <div className="flex flex-col items-center justify-center">
+
+          {/* search bar  */}
+          {/* <div className="flex flex-col items-center justify-center">
             <div className="">
               <input
                 type="text"
@@ -128,14 +138,21 @@ const Projects = () => {
             {searchTerm && (
               <div className="mt-10 text-2xl">Search term: {searchTerm}</div>
             )}
-          </div>
+          </div> */}
         </div>
-
+      
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} {...project} />
-          ))}
-        </div>
+  {projects.map((project) => (
+    <BackgroundGradient key={project.id} className="rounded-[22px] max-w-sm p-4 sm:p-1 dark:bg-zinc-900">
+      <ProjectCard {...project} />
+    </BackgroundGradient>
+  ))}
+</div>
+
+        
+       
+        
       </div>
     </>
   );
