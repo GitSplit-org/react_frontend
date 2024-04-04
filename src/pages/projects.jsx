@@ -40,7 +40,7 @@ const Projects = () => {
     return (
       <div
         key={id}
-        className="bg-slate-900 rounded-lg shadow-lg p-4 border border-white hover:cursor-pointer"
+        className="bg-black rounded-lg h-96 shadow-lg p-4   hover:cursor-pointer"
         onClick={() => {
           navigate({
             pathname: `/project`,
@@ -142,9 +142,9 @@ const Projects = () => {
         </div>
       
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4  ">
   {projects.map((project) => (
-    <BackgroundGradient key={project.id} className="rounded-[22px] max-w-sm p-4 sm:p-1 dark:bg-zinc-900">
+    <BackgroundGradient key={project.id} className="rounded-[22px]  p-4 sm:p-1 dark:bg-zinc-900">
       <ProjectCard {...project} />
     </BackgroundGradient>
   ))}
