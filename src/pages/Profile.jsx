@@ -7,6 +7,7 @@ import { abi } from "../abi/abi";
 import { useAddress } from "@thirdweb-dev/react";
 import { faLocationDot, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ProjectCard from "../utils/ProjectCard";
 import {
   TextRevealCard,
   TextRevealCardDescription,
@@ -197,22 +198,28 @@ const ProfilePage = () => {
                 {userData?.name}
               </p>
               {/* <p className="text-sm   text-center mt-1 text-[#a8a9a9] ">{userData?.login}</p> */}
-              <div className="flex justify-center mt-2 items-center">
-                <FontAwesomeIcon icon={faLocationDot} />
-                <p className="text-sm  items-center"> {userData?.location} </p>
+              <div className="flex    items-center">
+                <div className="w-1/3"></div>
+  <div className="flex items-center  w-1/3 justify-center">
+    <FontAwesomeIcon icon={faLocationDot} />
+    <p className="text-sm ml-2  ">{userData?.location}</p>
+  </div>
 
-                <div className="flex self-end ">
-                  <h3 className="text-lg font-semibold ">
-                    Balance: {balance} MATIC
-                  </h3>
-                  <button
-                    onClick={handleWithdraw}
-                    className="bg-blue-500  text-white  mt-2 rounded-mdn  hover:bg-blue-600 transition duration-300"
-                  >
-                    Withdraw Balance
-                  </button>
-                </div>
-              </div>
+  <div className="flex items-center w-1/3  justify-end pr-10">
+    <div className="text-center">
+      <h3 className="text-lg font-semibold">
+        Balance: {balance} MATIC
+      </h3>
+      <button
+        onClick={handleWithdraw}
+        className="bg-blue-500 text-white w-36 rounded-md hover:bg-blue-600 transition duration-300"
+      >
+        Withdraw Balance
+      </button>
+    </div>
+  </div>
+</div>
+
             </div>
           </div>
 
@@ -246,7 +253,7 @@ const ProfilePage = () => {
                 {Address && !WalletLinked && (
                   <button
                     onClick={handleWalletConnect}
-                    className="bg-blue-500  text-white  rounded-md hover:bg-blue-600 transition duration-300"
+                    className="bg-blue-500  text-white w-32 rounded-md hover:bg-blue-600 transition duration-300"
                   >
                     Connect Wallet
                   </button>
@@ -254,9 +261,78 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold">Projects</h3>
+          <div className="m-6">
+            <h3 className="text-2xl font-semibold pl-[10rem] ">Projects</h3>
           </div>
+          <div className="flex flex-wrap items-center bg-[#171123] justify-center flex-col lg:flex-row relative overflow-hidden ">
+      {/* <img
+        src="./star.jpg"
+        alt=""
+        className="h-full w-full object-cover opacity-20 absolute bottom-0"
+      /> */}
+      <div className="z-20 flex items-center justify-center gap-3 m-2 flex-wrap">
+        <ProjectCard
+          name={"Blog Website"}
+          image={"/project/img1.png"}
+          about={
+            "You can write and read blogs in it and it is built on NextJS, its backend uses mongodb. And it is also mobile responsive"
+          }
+          edit={"/"}
+          code={"/"}
+          // visit={"/"}
+        />
+        <ProjectCard
+          name={"Imagzen 🖼️"}
+          image={"/project/img2.png"}
+          about={
+            "Meet IMAGZEN – the responsive image download app that lets you search and download images with ease."
+          }
+          edit={"/"}
+          code={"/"}
+          // visit={"/"}
+        />
+        <ProjectCard
+          name={"NextJs E commerce 🏪"}
+          image={"/project/img3.png"}
+          about={
+            "You can order clothes and create your own products and it is built on NextJS, its backend uses MongoDB. And it is also mobile responsive. And Test Account is = test@gmail.com and password = test4321"
+          }
+          edit={"/"}
+          code={"/"}
+          // visit={"/"}
+        />
+        <ProjectCard
+          name={"ChatGPT Clone 💬"}
+          image={"/project/img4.png"}
+          about={
+            "Similar to chatGPT, this platform is designed to assist users in addressing their queries. It's an excellent resource to tackle any code-related issue or inquiry you may have."
+          }
+          edit={"/"}
+          code={"/"}
+          // visit={"/"}
+        />
+        <ProjectCard
+          name={"Fitness Club 👊"}
+          image={"/project/img5.png"}
+          about={
+            "We're excited to introduce Gym-Exercise, the fitness platform that's open-source and designed to help you take charge of your health and fitness journey."
+          }
+          edit={"/"}
+          code={"/"}
+          visit={"/"}
+        />
+        <ProjectCard
+          name={"Youtube Clone 📹"}
+          image={"/project/img6.png"}
+          about={
+            "A YouTube clone that allows users to search and enjoy their favorite videos and songs is now available. This platform is also mobile-responsive, making it convenient for users on-the-go."
+          }
+          edit={"/"}
+          code={"/"}
+          visit={"/"}
+        />
+      </div>
+    </div>
         </div>
       </div>
 

@@ -114,7 +114,7 @@ const Projects = () => {
           className="bg-cover flex flex-col justify-center  items-center bg-center h-64  text-white"
           
         >
-          <h1 className="text-6xl w-auto font-bold">Find a Projects
+          <h1 className="text-6xl w-auto font-bold">Find  Projects
           </h1>
           <div> <p className="text-[#c2aeec] text-xl  mt-4">Check out the projects linked with us</p></div>
          
