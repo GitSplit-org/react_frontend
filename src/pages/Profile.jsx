@@ -5,6 +5,13 @@ import axios from "axios";
 import { ethers } from "ethers";
 import { abi } from "../abi/abi";
 import { useAddress } from "@thirdweb-dev/react";
+import { faLocationDot, faCopy } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  TextRevealCard,
+  TextRevealCardDescription,
+  TextRevealCardTitle,
+} from "../utils/textRevelCard";
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
@@ -14,6 +21,16 @@ const ProfilePage = () => {
   const [Address, setAddress] = useState(0);
   const [WalletLinked, setWalletLinked] = useState(false);
   const address = useAddress();
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(address).then(
+      () => {
+        alert("Address copied to clipboard");
+      },
+      (error) => {
+        console.error("Unable to copy to clipboard.", error);
+      }
+    );
+  };
 
   useEffect(() => {
     setAddress(address);
@@ -32,10 +49,15 @@ const ProfilePage = () => {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
+      // const response = await axios.get(
+      //   `https://api.github.com/users/${username}`,
+      //   { headers }
+      // );
       const response = await axios.get(
-        `https://api.github.com/users/${username}`,
+        `https://api.github.com/users/rushikeshnimkar`,
         { headers }
       );
+
       setUserData(response.data);
       console.log(response.data);
       await fetchBalance(username);
@@ -100,7 +122,8 @@ const ProfilePage = () => {
         {
           username: userData.login,
           walletAddress: Address,
-        }
+        },
+        console.log(userData)
       );
       if (response.status == 200) {
         alert("wallet linked");
@@ -145,53 +168,91 @@ const ProfilePage = () => {
     handleCloseWithdrawalForm();
   };
 
-  if (userData === null) {
-    return (
-      <>
-        <Navbar />
-        <div className="bg-slate-950 text-white text-4xl flex items-center justify-center h-screen">
-          Please sign in to view your profile.
-        </div>
-      </>
-    );
-  }
+  // if (userData === null) {
+  //   return (
+  //     <>
+  //       <Navbar />
+  //       <div className="bg-slate-950 text-white text-4xl flex items-center justify-center h-screen">
+  //         Please sign in to view your profile.
+  //       </div>
+  //     </>
+  //   );
+  // }
 
   return (
     <>
       <Navbar />
-      <div className="flex justify-center items-center h-screen bg-gray-900 text-white">
-        <div className="bg-gray-800 p-8 rounded-lg shadow-xl">
-          <div className="flex items-center">
+      <div className=" flex justify-center mt-10   h-screen bg-[#171123] text-white">
+        <div className="w-full ">
+          <div className="flex  justify-center">
             <img
               src={userData?.avatar_url}
               alt="Profile"
-              className="w-16 h-16 rounded-full mr-4"
+              className="w-16 h-16 rounded-full mr-4 "
             />
+          </div>
+          <div className=" ">
             <div>
-              <h2 className="text-xl font-bold">{userData?.name}</h2>
-              <p className="text-gray-400">ID: {userData?.id}</p>
+              <p className="text-md font-bold text-center mt-4">
+                {userData?.name}
+              </p>
+              {/* <p className="text-sm   text-center mt-1 text-[#a8a9a9] ">{userData?.login}</p> */}
+              <div className="flex justify-center mt-2 items-center">
+                <FontAwesomeIcon icon={faLocationDot} />
+                <p className="text-sm  items-center"> {userData?.location} </p>
+
+                <div className="flex self-end ">
+                  <h3 className="text-lg font-semibold ">
+                    Balance: {balance} MATIC
+                  </h3>
+                  <button
+                    onClick={handleWithdraw}
+                    className="bg-blue-500  text-white  mt-2 rounded-mdn  hover:bg-blue-600 transition duration-300"
+                  >
+                    Withdraw Balance
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold">Wallet: {Address}</h3>
-            <h3 className="text-lg font-semibold">Status: {"Address"}</h3>
-            {Address && !WalletLinked && (
-              <button
-                onClick={handleWalletConnect}
-                className="bg-blue-500 text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-600 transition duration-300"
-              >
-                Connect Wallet
-              </button>
-            )}
-          </div>
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold">Balance: {balance} MATIC</h3>
-            <button
-              onClick={handleWithdraw}
-              className="bg-blue-500 text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-600 transition duration-300"
-            >
-              Withdraw Balance
+
+          <div className="mt-6 flex justify-center ">
+            <TextRevealCard
+              text="Revel Your wallet address"
+              revealText={`  ${Address}`}
+              className=" "
+            />
+            <button onClick={copyToClipboard}>
+              {" "}
+              <FontAwesomeIcon icon={faCopy} />
             </button>
+          </div>
+          <div className="mt-5">
+            {/* <button  className="copy-button">
+      <i className="fas fa-copy "></i> Copy
+    </button> */}
+            <div className=" flex justify-evenly ">
+              <div className="text-center">
+                {userData?.followers} <p>followers</p>
+              </div>
+              <div className="text-center">
+                {userData?.following} <p>following</p>
+              </div>
+            </div>
+
+            <div className="flex justify-evenly mt-10">
+              <div>
+                {/* <h3 className="text-lg font-semibold m-5">Status: {"Address"}</h3> */}
+                {Address && !WalletLinked && (
+                  <button
+                    onClick={handleWalletConnect}
+                    className="bg-blue-500  text-white  rounded-md hover:bg-blue-600 transition duration-300"
+                  >
+                    Connect Wallet
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
           <div className="mt-6">
             <h3 className="text-lg font-semibold">Projects</h3>

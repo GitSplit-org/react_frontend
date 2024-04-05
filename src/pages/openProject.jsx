@@ -28,7 +28,7 @@ const ProjectPage = () => {
   //   abi,
   //   "0x49cfeE607B35Af7d3d8D957Be30601a2576FC487"
   // );
-  
+  const[loading , setloading]=useState(true)
   const [project, setProject] = useState(null);
   const [contributors, setContributors] = useState([]);
   const [searchParams] = useSearchParams();
@@ -81,6 +81,7 @@ const ProjectPage = () => {
         })
       );
       
+      
 
       console.log(contributorsWithPercentage);
       setContributors(contributorsWithPercentage);
@@ -99,10 +100,12 @@ const ProjectPage = () => {
       setProject(response.data.data);
       if (response.data.data.url) {
         fetchRepoData(response.data.data.url);
+        setloading(true);
       }
     } catch (error) {
       console.error("Error fetching project:", error);
     }
+    
   };
 
   useEffect(() => {
@@ -161,6 +164,11 @@ const ProjectPage = () => {
 
   if (!project) {
     return <div className="bg-black text-white min-h-screen">Loading...</div>;
+  }
+  if(loading){
+    <>
+    <div className="bg-[#171123]"> </div>
+    </>
   }
 
   return (
