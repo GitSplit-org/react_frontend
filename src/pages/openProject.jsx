@@ -352,12 +352,13 @@ const ProjectPage = () => {
         
         {/* Donation Form Overlay */}
         {isDonationFormOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex  justify-center items-center">
             <form
               onSubmit={handleDonateFormSubmit}
-              className="bg-gray-800 py-16 px-12 rounded-md shadow-lg  flex flex-col justify-center"
+              className="bg-gray-800  rounded-lg shadow-lg w-1/3  h-1/3 flex flex-col"
             >
-              <h2 className="text-2xl font-semibold mb-4 text-white pb-4">
+              <div className="m-5">
+              <h2 className="text-2xl font-semibold text-white mb-4 ">
                 Donate
               </h2>
               <input
@@ -365,10 +366,10 @@ const ProjectPage = () => {
                 value={donationAmount}
                 onChange={(e) => setDonationAmount(e.target.value)}
                 placeholder="Enter donation amount"
-                className=" text-black w-full border border-gray-700 rounded-md px-3 py-2 mb-8 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className=" text-black w-full border px-2 border-gray-700 rounded-md py-2  focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
-              <div className="flex justify-end">
+              <div className="flex justify-end mt-20">
                 <button
                   type="button"
                   onClick={() => setIsDonationFormOpen(false)}
@@ -382,6 +383,7 @@ const ProjectPage = () => {
                 >
                   Confirm
                 </button>
+              </div>
               </div>
             </form>
           </div>

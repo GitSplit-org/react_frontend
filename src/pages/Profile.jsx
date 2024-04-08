@@ -212,7 +212,7 @@ const ProfilePage = () => {
       </h3>
       <button
         onClick={handleWithdraw}
-        className="bg-blue-500 text-white w-36 rounded-md hover:bg-blue-600 transition duration-300"
+        className="bg-blue-500 text-white w-36 p-2  rounded-md hover:bg-blue-600 transition duration-300"
       >
         Withdraw Balance
       </button>
@@ -338,8 +338,8 @@ const ProfilePage = () => {
 
       {/* Withdrawal Form */}
       {isWithdrawalFormOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-75 flex justify-center items-center">
-          <div className="bg-gray-800 p-6 rounded-lg shadow-md">
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-75  flex justify-center items-center">
+          <div className="bg-[#000000] p-5  w-1/4 h-1/3 rounded-lg shadow-md">
             <h2 className="text-lg font-semibold text-white mb-4">
               Withdraw Balance
             </h2>
@@ -350,7 +350,7 @@ const ProfilePage = () => {
               placeholder="Enter amount to withdraw"
               className="w-full border border-gray-700 rounded-md px-3 py-2 mb-4 text-white bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <div className="flex justify-end">
+            <div className="flex justify-end mt-10">
               <button
                 onClick={handleCloseWithdrawalForm}
                 className="text-gray-300 hover:text-white mr-4"
