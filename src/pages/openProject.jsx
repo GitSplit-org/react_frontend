@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ScrollPage } from "react-scroll-motion";
 import SocialDropdown from '../utils/socialDropdown';
 import { faDonate ,faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
@@ -167,27 +166,29 @@ const ProjectPage = () => {
   }
   if(loading){
     <>
-    <div className="bg-[#171123]"> </div>
+    <div className="bg-cyan-400"> </div>
     </>
   }
 
   return (
     <>
+    <div>
    
+      
+      <div className=" p-5  ">
       <Navbar />
-      <div className="mt-16 mr-16 ml-16">
-      <div className=" text-white max-h-full bg-black rounded-[50px] p-2  ">
+      <div className=" text-white max-h-full bg-black rounded-[50px] p-2 mt-5 mr-16 ml-16 ">
         {/* Cover Photo */}
         <div
-  className="h-50 bg-cover pl-5 pt-5 bg-center bg-gray-800 rounded-[50px] relative"
+  className="h-50 bg-cover pl-5 pt-5 bg-center bg-gray-800 rounded-[30px] relative"
   style={{ backgroundImage: `url(${project.image})` }}
 >
   {/* Fade-out overlay */}
-  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-800  "></div>
+  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1E1E1E]  "></div>
 
   {/* Profile Picture */}
-  <div className="mx-10 mt-52   h-72 relative z-10  flex flex-col justify-end pb-10 ">
-  <h1 className="text-5xl   font-bold">{project.name}</h1>
+  <div className="mx-10 mt-52   h-72 relative z-10  flex flex-col justify-end pb-2 ">
+  <h1 className="text-[80px]   font-bold">{project.name}</h1>
     {/* <img
       src={project.image}
       alt="Profile"
@@ -195,30 +196,30 @@ const ProjectPage = () => {
     /> */}
   </div>
 </div>
-<div className="flex  bg-[#171123]">
+<div className="flex  bg-gradient-to-b bg-[#1E1E1E] rounded-bl-[30px]">
   
       <div className="flex-1 overflow-y-auto scroll-smooth focus:scroll-auto h-screen mx-10 ">
         {/* Left side content */}
         <div className="p-4">
-          <h1 className="text-2xl font-bold text-violet-200 pt-10 w-auto">Where Contributions Matter, Funds Flow Fairly</h1>
+          <h1 className="text-[32px] font-semibold text-cyan-200 pt-10 w-auto">Where Contributions Matter, Funds Flow Fairly</h1>
           <div className="mt-4 flex  font-bold">
-            <div  className="text-md text-purple-400 w-1/3">
+            <div  className="text-md text-cyan-400 w-1/3">
               Category<br/>
 
               <div className="text-white">Blockchain</div>
             </div>
-            <div className="text-md text-purple-400 w-1/3">
+            <div className="text-md text-cyan-400 w-1/3">
               Published 
               <div className="text-white">04/03/2024</div>
             </div>
-            <div className="text-md text-purple-400 w-1/3">
+            <div className="text-md text-cyan-400 w-1/3">
              contributors<br/>
              <div  className="text-white">{totalContributors}</div>
              
             </div>
             </div>
             <div className="h-auto pt-10"> 
-            <div className="text-3xl">Description </div>
+            <div className="text-[32px] font-semibold">Description </div>
             <div className="p-2">{project.description}</div>
 
             
@@ -228,16 +229,16 @@ const ProjectPage = () => {
       </div>
       
 
-      <div className="w-1/3 h-screen p-4 bg-[#171123] ">
+      <div className="w-1/3 h-screen p-4  bg-[#1E1E1E]  rounded-b-2xl   ">
         {/* Right side content */}
         <div className="pt-10 flex justify-center items-center gap-5 ">
-          <div className="p-1 w-2/3 font-bold  bg-[#2d2145]"><LikeButton initialLikes={0}  /></div>
-          <div className="w-1/5 p-1 flex justify-center bg-[#2d2145]">
+          <div className="p-1 w-2/3 font-bold   bg-[#313338] rounded-lg"><LikeButton initialLikes={0}  /></div>
+          <div className="w-1/5 p-1 flex justify-center bg-[#313338] rounded-lg">
 
-          <FontAwesomeIcon icon={faXTwitter} className="text-4xl p-1.5" /></div>
+          <FontAwesomeIcon icon={faXTwitter} className="text-4xl p-1.5 rounded-lg" /></div>
 
         
-          <div className="p-1 w-1/5 bg-[#2d2145] flex justify-center">
+          <div className="p-1 w-1/5  bg-[#313338] flex justify-center rounded-lg">
             <SocialDropdown/>
            
           </div>
@@ -245,11 +246,11 @@ const ProjectPage = () => {
       
        
         
-        <div className="flex text-2xl  items-center mt-5   bg-[#2d2145]  justify-center ">
+        <div className="flex text-2xl  items-center mt-5  rounded-lg  bg-[#313338]  justify-center ">
        
       <button
         onClick={handleDonateButtonClick}
-        className="bg-[#2d2145] text-white p-5 w-full   rounded-md hover:bg-[#584186] transition duration-300  flex gap-20 justify-evenly items-center"
+        className=" bg-[#313338] text-white p-5 w-full   rounded-lg hover:bg-teal-800 transition duration-300  flex gap-20 justify-evenly items-center"
       >
          <FontAwesomeIcon icon={faDonate}  className="" />
          {/* Donate Icon */}
@@ -258,7 +259,7 @@ const ProjectPage = () => {
       </button>
      
     </div>
-    <div className="bg-[#2d2145]px-6 py-4">
+    <div className="px-6 py-4 ">
               <h2 className="text-lg font-semibold mb-2">Contributors</h2>
               <ul>
                 {contributors.map((contributor, index) => (
@@ -388,6 +389,7 @@ const ProjectPage = () => {
             </form>
           </div>
         )}
+      </div>
       </div>
       </div>
     </>

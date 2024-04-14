@@ -68,7 +68,7 @@ export const TextRevealCard = ({
       onTouchMove={touchMoveHandler}
       ref={cardRef}
       className={cn(
-        "bg-[#171123] w-[25rem] rounded-lg p-2 h-auto  flex justify-center relative overflow-hidden",
+        "bg-black w-[25rem] rounded-lg p-2 h-auto  flex justify-center relative overflow-hidden",
         className
       )}
     >
@@ -90,7 +90,7 @@ export const TextRevealCard = ({
                 }
           }
           transition={isMouseOver ? { duration: 0 } : { duration: 1 }}
-          className="absolute bg-[#171123] z-20 will-change-transform"
+          className="absolute bg-[#000000] z-20 will-change-transform"
         >
           <p
             style={{

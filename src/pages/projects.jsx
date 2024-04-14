@@ -48,13 +48,13 @@ const Projects = () => {
           });
         }}
       >
-        <div className="relative h-40  mb-4 rounded-lg overflow-hidden">
+        <div className="relative h-40  mb-4 rounded-lg overflow-hidden flex flex-col">
           <img src={image} alt={name} className="object-cover w-full h-full" />
         </div>
         <h3 className="text-xl font-bold text-white mb-2">{name}</h3>
         <p className="text-gray-300">{description}</p>
         <p className="text-gray-300">Owner: {owner}</p>
-        <div>
+        <div className="   ">
           <a
             href={url}
             className="text-blue-500 hover:underline"
@@ -105,18 +105,19 @@ const Projects = () => {
 
   return (
     <>
+     
+
+
+
+      <div className="container mx-auto p-5">
       <Navbar />
-
-
-
-      <div className="container mx-auto py-8 px-4">
         <div
           className="bg-cover flex flex-col justify-center  items-center bg-center h-64  text-white"
           
         >
           <h1 className="text-6xl w-auto font-bold">Find  Projects
           </h1>
-          <div> <p className="text-[#c2aeec] text-xl  mt-4">Check out the projects linked with us</p></div>
+          <div> <p className="text-cyan-400 text-xl  mt-4">Check out the projects linked with us</p></div>
          
          
         </div>

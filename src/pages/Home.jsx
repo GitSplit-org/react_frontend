@@ -1,184 +1,210 @@
 import Navbar from "../components/navbar";
+import video1 from "../assets/1.mp4";
+import Box from "../assets/box.png";
+import Blockchain from "../assets/key1.png";
+import Fund from "../assets/Decentralized.svg";
+import Wheel from "../assets/wheel.svg";
+import circle from "../assets/img-PnJF8EabIhtdtaxj3RntNOBT-removebg-preview.png";
+import mobile from "../assets/Screenshot_20240414_155130.png";
 
-import video from '../assets/landingpage.mp4';
-
-import { Animator, ScrollContainer, ScrollPage, batch, Fade,FadeUp, FadeIn, FadeOut, Move, MoveIn, MoveOut, Sticky, StickyIn, StickyOut, Zoom, ZoomIn, ZoomOut } from "react-scroll-motion";
+import {
+  Animator,
+  ScrollContainer,
+  ScrollPage,
+  batch,
+  FadeIn,
+  ZoomIn,
+} from "react-scroll-motion";
 // import { GlobeDemo } from "../components/demoglobe";
 
-
 const Home = () => {
- 
-  const ZoomOutScrollIN = batch(StickyIn(), FadeIn(), ZoomIn());
-  const ZoomInScrollOut = batch(StickyOut(), FadeIn(), ZoomOut(),  );
-  const changeXandY = batch(
-    StickyOut(), 
-    Move(ZoomOut(-10, 100, -100), -10, -500) // Move to top-right after centered
-  );
-  
-
-  
-  
+  const Boxx = batch(FadeIn(), ZoomIn());
 
   return (
-  
-    
     <>
-      <Navbar />
-      {/* <GlobeDemo/> */}
       <ScrollContainer>
-  <ScrollPage>
-    <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -250))}>
-      <span className=" bg-gradient-to-r from-white  to-purple-400 inline-block text-transparent text-center bg-clip-text text-9xl font-bold h-52 w-screen "> Gitsplit <br/> 
-      <p className="text-6xl pt-10  text-purple-500  ">Where Contributions Matter, Funds Flow Fairly.</p>   </span>
-    </Animator>
-  </ScrollPage>
-  <ScrollPage >
- 
-   <Animator animation={ZoomInScrollOut} className="flex  justify-center items-center ">
-       <span style={{ transform: 'translateZ(0px) translateX(0%) translateY(0%)', position: 'relative', zIndex: 0 }}>
-        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
-         </video>
-       </span>
-       </Animator> 
-      </ScrollPage>
-      {/* <Animator animation={ZoomInScrollOut} className="flex justify-center items-center h-screen"> 
-      <span className=" relative " style={{ transform: 'translateZ(0px) translateX(0%) translateY(0%)', zIndex: -20 ,  }}>
-        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
-        </video>
-      </span>
-      </Animator>
-      <Animator animation={ZoomInScrollOut} className="flex justify-center items-center h-screen">
-      <span style={{ transform: 'translateZ(0px) translateX(250%) translateY(150%)', position: 'relative', zIndex: 2}}>
-        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
-        </video>
-       
-      </span>
-      </Animator>
-      <Animator animation={ZoomInScrollOut} className="flex justify-center items-center h-screen">
-      <span style={{ transform: 'translateZ(-150px) translateX(150%) translateY(-150%)', position: 'relative', zIndex: -20 }}>
-        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
-        </video>
-      </span>
-      </Animator>
-      <Animator animation={ZoomInScrollOut} className="flex justify-center items-center h-screen">
-      <span style={{ transform: 'translateZ(-150px) translateX(-450%) translateY(-150%)', position: 'relative', zIndex: -20 }}>
-        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
-        </video>
-      </span>
-      </Animator> */}
-      {/* <Animator animation={ZoomOutScrollIN} className="flex justify-center items-center h-screen">
-      <span style={{ transform: 'translateZ(-150px) translateX(50%)', position: 'relative', zIndex: -20  }}>
-        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
-        </video>
-      </span>
-      </Animator> */}
-      {/* <Animator animation={ZoomOutScrollIN} className="flex justify-center items-center h-screen">
-      <span style={{ transform: 'translateZ(-150px) translateX(50%)', position: 'relative', zIndex: -20  }}>
-        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
-        </video>
-      </span>
-      </Animator>
-      <Animator animation={ZoomOutScrollIN} className="flex justify-center items-center h-screen">
-      <span style={{ transform: 'translateZ(-150px) translateX(50%)', position: 'relative', zIndex: -20  }}>
-        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
-        </video>
-      </span>
-      </Animator>
-      
-      <Animator animation={ZoomOutScrollIN} className="flex justify-center items-center h-screen">
-      <span style={{ transform: 'translateZ(-150px) translateX(50%)', position: 'relative', zIndex: -20  }}>
-        <video src={video} autoPlay loop className="h-auto border-2 border-purple-950 overflow-clip">
-        </video>
-      </span>
-    </Animator> */}
-
-  
-  <ScrollPage>
-    <Animator animation={batch(StickyIn(), FadeIn())}>
-      <span className=" text-9xl flex justify-center   ">BlockChain</span>
-    </Animator>
-  </ScrollPage>
-  <ScrollPage>
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }} >
-      <span style={{ fontSize: "40px" }}>
-        <Animator animation={MoveIn(-1000, 0)}>Hello Guys 👋🏻</Animator>
-        <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>
-        - I'm Dante Chun -
-        <Animator animation={MoveOut(1000, 0)}>Good bye ✋🏻</Animator>
-        <Animator animation={MoveOut(-1000, 0)}>See you 💛</Animator>
-      </span>
-    </div>
-  </ScrollPage>
-  <ScrollPage>
-    <Animator animation={batch(Fade(), Sticky())}>
-      <span style={{ fontSize: "40px" }}>Done</span>
-      <br/>
-      <span style={{ fontSize: "30px" }}>
-        There's FadeAnimation, MoveAnimation, StickyAnimation, ZoomAnimation
-      </span>
-    </Animator>
-  </ScrollPage>
-</ScrollContainer>
-
-      <div className="flex flex-col items-center justify-center h-screen pb-20 bg-black text-white">
-        <h1 className="text-4xl font-bold mb-4">
-          Support Open Source Development
-        </h1>
-        <p className="text-2xl">Donate to GitHub Projects</p>
-        <div className="pt-2">
-          <button className=" border-2 bg-stone-600 text-white p-1">
-            Get Started
-          </button>
-          <button className="pl-4">learn more..</button>
-        </div>
-      </div>
-      <div className=" bg-slate-400 h-screen ">
-        <div className="flex h-5/6 pl-20 pr-20 pt-10 ">
-          <div className="w-1/2  p-4 ease-in-out bg-gradient-to-t from-white to-white hover:to-lime-100">
-            {/* Content for the left pane */}
-            <h2 className="text-xl font-bold">Gitsplit Grants</h2>
-            <p className="text-2xl pt-5">Get funding & grow your ecosystem </p>
-            <p className="pb-3">
-              Participate in our quartely grants programfor open-source &
-              impact-oriented projects.
-            </p>
-            <button className="border-2  rounded-md border-black p-1 ">
-              view Grants{" "}
-            </button>
-          </div>
-          <div className="w-1/2  p-4 ease-in-out bg-gradient-to-t from-white to-white hover:to-blue-100">
-            {/* Content for the right pane */}
-            <h2 className="text-xl font-bold">Grant Program</h2>
-            <p className="text-2xl pt-5">Launch & grow your grants program </p>
-            <p className="pb-3">
-              Easily manage your onchine program with our customizable grants
-              solution .
-            </p>
-            <button className="border-2  rounded-md border-black p-1 ">
-              view Grants{" "}
-            </button>
+        <div>
+          <video
+            autoPlay
+            muted
+            loop
+            style={{
+              position: " absolute",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              zIndex: "2", // Place the video behind other content
+            }}
+          >
+            <source src={video1} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div
+            style={{ position: "relative", zIndex: "2", padding: "20px" }}
+            className=" text-white h-screen "
+          >
+            <Navbar />
+            {/* Content that will be on top of the video */}
+            <div className="flex flex-col justify-center items-center mt-56 ">
+              <h1 className=" text-4xl font-bold"> G I T S P L I T</h1>
+              <br />
+              <p className="text-6xl font-black px-10 mt-24">
+                From Code to Contribution: Empowering{" "}
+              </p>
+              <p className="text-6xl  font-black h-28 p-5  text-[#33e0db] ">
+                Open Source with GitSplit
+              </p>
+              <burtton className="p-4 font-bold text-xl"> LEARN MORE </burtton>
+            </div>
           </div>
         </div>
+
+        <ScrollPage>
+          <Animator animation={Boxx}>
+            <div className="flex">
+              <div className="w-1/2 ">
+                <img src={Box} alt="GitSplit Logo" />
+              </div>
+
+              <div className="w-1/2">
+                <p className="text-2xl font-semibold text-white p-10 mt-20  text-justify leading-loose">
+                  Introducing GitSplit: the groundbreaking platform
+                  revolutionizing open-source funding. GitSplit empowers
+                  developers by providing a decentralized crowdfunding solution
+                  where contributions are fairly rewarded. With seamless GitHub
+                  integration, transparent blockchain technology, and equitable
+                  fund distribution, GitSplit is where innovation meets
+                  opportunity. Join GitSplit to fuel open-source projects,
+                  collaborate with creators worldwide, and shape the future of
+                  software development.
+                </p>
+              </div>
+            </div>
+          </Animator>
+        </ScrollPage>
+      </ScrollContainer>
+      <div className="relative overflow-hidden h-screen flex">
+        <div className="absolute top-0 right-0 w-full   ">
+          <div className="text-white text-5xl  p-4 animate-slide flex  justify-stretch gap-24 ">
+            <div className="flex">
+              <img
+                src={Wheel}
+                alt="icon"
+                width={60}
+                className=" flex mt-4 mb-5 spin-svg"
+              />
+
+              <p className="pt-5  font-extrabold mx-10">Key Features</p>
+            </div>
+            <div className="flex gap-10  ">
+              <img
+                src={Wheel}
+                alt="icon"
+                width={60}
+                className=" flex mt-4  mb-5 spin-svg space-x-20 "
+              />
+
+              <p className="pt-5 font-black mx-10 ">Key Features</p>
+            </div>
+            <div className="flex gap-10  ">
+              <img
+                src={Wheel}
+                alt="icon"
+                width={60}
+                className=" flex mt-4 mb-5 spin-svg "
+              />
+
+              <p className="pt-5 font-black mx-10">Key Features</p>
+            </div>
+            <div className="flex gap-10  ">
+              <img
+                src={Wheel}
+                alt="icon"
+                width={60}
+                className=" flex mt-4 mb-5 spin-svg"
+              />
+
+              <p className="pt-5 font-black mx-10">Key Features</p>
+            </div>
+            <div className="flex gap-10  ">
+              <img
+                src={Wheel}
+                alt="icon"
+                width={60}
+                className=" flex mt-4 mb-5 spin-svg"
+              />
+
+              <p className="pt-5 font-black mx-10">Key Features</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="w-1/2 h-1/2  text-white  flex   flex-col  justify-center p-32  text-start pt-5 mt-64">
+          <img src={Blockchain} alt="icon" width={60} className=" flex  mb-5" />
+          <p className=" font-extrabold text-4xl ">Blockchain Fund Transfers</p>
+          <p className="mt-5 text-justify text-xl text-gray-400 ">
+            GitSplit uses blockchain for secure and transparent fund transfers.
+            Smart contracts handle donations, eliminating intermediaries and
+            reducing costs while providing a clear view of transactions.
+          </p>
+        </div>
+        <div className="w-1/2 h-1/2  text-white  flex   flex-col  justify-center p-32  text-start pt-5  mt-64">
+          <img src={Fund} alt="icon" width={60} className=" flex  mb-5" />
+          <p className=" font-extrabold text-4xl ">Fair Fund Splitting</p>
+          <p className="mt-5 text-justify text-xl text-gray-400 ">
+            {" "}
+            GitSplit's smart contracts ensure fair distribution of funds among
+            contributors. Contributions like code commits are tracked and
+            rewarded, promoting collaboration and meaningful participation.
+          </p>
+        </div>
+
+        {/* </div> */}
       </div>
-      <div className=" h-screen pt-10 ">
-        <p className="text-4xl font-extrabold text-cyan-900 flex justify-center ">
-          Raise money with full transparency
-        </p>
-        <p className=" text-lg font-bold  pt-2 flex justify-center">
-          {" "}
-          We do the paperwork so you can focus on your mission.
-        </p>
-        <div className="flex justify-center">
+      <div className="flex  ">
+        <div className="w-1/2 h-1/2  text-white  flex   flex-col  justify-center px-32  text-start ">
+          <img src={Blockchain} alt="icon" width={60} className=" flex  mb-5" />
+          <p className=" font-extrabold text-4xl ">Secure Transactions</p>
+          <p className="mt-5 text-justify text-xl text-gray-400 ">
+            {" "}
+            GitSplit employs blockchain encryption for fund security. User data
+            is protected with encryption and multi-factor authentication,
+            ensuring privacy and preventing unauthorized access.
+          </p>
+        </div>
+        <div className="w-1/2 h-1/2  text-white  flex   flex-col  justify-center px-32  text-start  ">
+          <img src={Blockchain} alt="icon" width={60} className=" flex  mb-5" />
+          <p className=" font-extrabold text-4xl ">Project Showcase</p>
+          <p className="mt-5 text-justify text-xl text-gray-400 ">
+            {" "}
+            GitSplit is a platform for open-source projects to showcase work.
+            Project details, goals, and progress are displayed for users to
+            discover and support, fostering community engagement and project
+            visibility.
+          </p>
+        </div>
+      </div>
+      <div className="h-screen flex ">
+        <div className="flex-1    mt-28 ">
+          <div className="  flex justify-start px-24">
+            <p className=" flex  mt-10 text-xl font-semibold ">Comming Soon</p>
+          </div>
+          <div className="mt-10 justify-center text-7xl  text-pretty px-24 font-black">
+            <span className=" text-white">Access GitSplit from</span>
+            <span className=" text-teal-500"> Desktop & Mobile</span>
+          </div>
+        </div>
+        <div className="flex-1  max-w-1/2 relative overflow-hidden">
           <img
-            src="https://www.surveylegend.com/wordpress/wp-content/uploads/2021/02/organizational-culture-2.png"
-            alt="React Image"
-            width={600}
+            src={circle}
+            className="spin-img opacity-20 absolute "
+            alt="Circle"
           />
+          <img src={mobile}  width={300} className="absolute bottom-0 right-60"/>
         </div>
       </div>
     </>
-
-)
-  }
+  );
+};
 
 export default Home;

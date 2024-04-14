@@ -24,7 +24,7 @@ const SocialDropdown = () => {
     <div className="relative">
       {/* Dropdown button */}
       <button
-        className="rounded-md w-12 h-12 bg-[#171123] text-white flex items-center justify-center focus:outline-none"
+        className="rounded-md w-12 h-12 bg-[#313338] text-white flex items-center justify-center focus:outline-none"
         onClick={() => setIsOpen(!isOpen)}
       >
         <FontAwesomeIcon icon={faCaretSquareUp} className="w-6 h-6" />
@@ -40,7 +40,7 @@ const SocialDropdown = () => {
         leaveFrom="scale-100 opacity-100"
         leaveTo="scale-95 opacity-0"
       >
-        <div className="absolute z-10 mt-2 w-36 rounded-md shadow-lg bg-[#261e34] ring-1 ring-black ring-opacity-5">
+        <div className="absolute z-10 mt-2 w-36 rounded-md shadow-lg bg-[#313338] ring-1 ring-black ring-opacity-5">
           <div className="py-1">
             {socialMediaIcons.map((social, index) => (
               <a

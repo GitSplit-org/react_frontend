@@ -13,6 +13,7 @@ const ProjectForm = () => {
       setUser(res.data.user?.user_metadata.user_name);
     });
   }
+
   const [step, setStep] = useState(1);
 
   const [projectName, setProjectName] = useState("");
@@ -23,7 +24,7 @@ const ProjectForm = () => {
   const [socialMedia3, setSocialMedia3] = useState("");
   const [image, setImage] = useState(null);
   const [wordCount, setWordCount] = useState(0);
-  const maxWordCount = 200;
+  const maxWordCount = 10000;
 
   const handleDescriptionChange = (e) => {
     const text = e.target.value;
@@ -45,8 +46,8 @@ const ProjectForm = () => {
     }
 
     if (!user) {
-      alert("login with github");
-      console.error("Please select an image");
+      alert("Login with GitHub");
+      console.error("Please log in with GitHub");
       return;
     }
 
@@ -91,7 +92,7 @@ const ProjectForm = () => {
 
       console.log("Response from backend:", response.data);
       // Handle success, show success message, redirect, etc.
-      alert("project registered");
+      alert("Project registered");
     } catch (error) {
       console.error("Error:", error);
       // Handle error, show error message, etc.
@@ -113,9 +114,9 @@ const ProjectForm = () => {
           <div className={`form-step ${step === 1 ? "active" : ""}`}>
             <label
               htmlFor="projectName"
-              className="block text-sm font-medium text-gray-300"
+              className="block text-md font-medium text-gray-300  text-center"
             >
-              Project Name
+             Add Your Project Name
             </label>
             <input
               type="text"
@@ -128,7 +129,7 @@ const ProjectForm = () => {
             <div className="mt-4 flex justify-end">
               <button
                 onClick={handleNext}
-                className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
+                className="bg-cyan-400 text-white py-2 px-4 rounded-md hover:bg-cyan-700 transition duration-300"
               >
                 Next
               </button>
@@ -140,7 +141,7 @@ const ProjectForm = () => {
           <div className={`form-step ${step === 2 ? "active" : ""}`}>
             <label
               htmlFor="description"
-              className="block text-sm font-medium text-gray-300"
+              className="block text-md font-medium text-gray-300"
             >
               Description
             </label>
@@ -150,7 +151,7 @@ const ProjectForm = () => {
               onChange={handleDescriptionChange}
               rows="5"
               maxLength="1000"
-              className="mt-1 block w-full text-white bg-gray-800 px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full text-white bg-black px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               required
             />
             <p className="text-sm text-gray-300">
@@ -165,7 +166,7 @@ const ProjectForm = () => {
               </button>
               <button
                 onClick={handleNext}
-                className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
+                className="bg-cyan-400 text-white py-2 px-4 rounded-md hover:bg-cyan-700 transition duration-300"
               >
                 Next
               </button>
@@ -178,7 +179,7 @@ const ProjectForm = () => {
             <div className="mb-4">
               <label
                 htmlFor="githubLink"
-                className="block text-sm font-medium text-gray-300"
+                className="block text-md font-medium text-gray-300"
               >
                 GitHub Link
               </label>
@@ -187,59 +188,59 @@ const ProjectForm = () => {
                 id="githubLink"
                 value={githubLink}
                 onChange={(e) => setGithubLink(e.target.value)}
-                className="mt-1 block w-full text-white bg-gray-800 px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full text-white bg-gray-800 px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm"
                 required
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="socialMedia1"
-                className="block text-sm font-medium text-gray-300"
+                className="block text-md font-medium text-gray-300"
               >
-                Social Media Link 1
+                Twitter
               </label>
               <input
                 type="text"
                 id="socialMedia1"
                 value={socialMedia1}
                 onChange={(e) => setSocialMedia1(e.target.value)}
-                className="mt-1 block w-full text-white bg-gray-800 px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full text-white bg-gray-800 px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm"
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="socialMedia2"
-                className="block text-sm font-medium text-gray-300"
+                className="block text-md font-medium text-gray-300"
               >
-                Social Media Link 2
+                Instagram
               </label>
               <input
                 type="text"
                 id="socialMedia2"
                 value={socialMedia2}
                 onChange={(e) => setSocialMedia2(e.target.value)}
-                className="mt-1 block w-full text-white bg-gray-800 px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full text-white bg-gray-800 px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm"
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="socialMedia3"
-                className="block text-sm font-medium text-gray-300"
+                className="block text-md font-medium text-gray-300"
               >
-                Social Media Link 3
+                LinkedIn
               </label>
               <input
                 type="text"
                 id="socialMedia3"
                 value={socialMedia3}
                 onChange={(e) => setSocialMedia3(e.target.value)}
-                className="mt-1 block w-full text-white bg-gray-800 px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full text-white bg-gray-800 px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm"
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="image"
-                className="block text-sm font-medium text-gray-300"
+                className="block text-md font-medium text-gray-300"
               >
                 Image
               </label>
@@ -247,7 +248,7 @@ const ProjectForm = () => {
                 type="file"
                 id="image"
                 onChange={(e) => setImage(e.target.files[0])}
-                className="mt-1 block w-full text-white bg-gray-800 px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full text-white bg-gray-800 px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm"
                 accept="image/*"
               />
             </div>
@@ -260,7 +261,7 @@ const ProjectForm = () => {
               </button>
               <button
                 type="submit"
-                className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
+                className=" bg-cyan-400 text-white py-2 px-4 rounded-md hover:bg-cyan-700 transition duration-300"
               >
                 Submit
               </button>
@@ -274,16 +275,18 @@ const ProjectForm = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="flex justify-center items-center min-h-screen bg-gray-900">
-        <div className="max-w-md w-full mx-auto p-8 bg-gray-800 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold mb-6 text-center text-white">
+    <div className="p-5">
+      <Navbar  />
+      <div className="flex justify-center items-center min-h-screen bg-black">
+        <div className=" max-w-xl w-full mx-auto p-8 bg-black mb-32 rounded-lg shadow-lg">
+          <h2 className="text-5xl font-bold mb-16 text-center text-white">
             Submit Your Project
           </h2>
           <form onSubmit={handleSubmit} className="form-container">
             {renderStep()}
           </form>
         </div>
+      </div>
       </div>
     </>
   );

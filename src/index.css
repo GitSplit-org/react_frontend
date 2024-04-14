@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes slide {
+    0% {
+      transform: translateX(10%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .animate-slide {
+    animation: slide 10s linear infinite;
+  }
+  .spin-svg {
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite; /* Animation for continuous rotation */
+  }
+  
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg); /* Spin the full circle */
+    }
+  }
+  
+  .spin-img {
+    width: 800px;
+    height: 800px;
+    animation: spin 8s linear infinite; /* Animation for continuous rotation */
+  }

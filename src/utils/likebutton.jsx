@@ -35,7 +35,7 @@ const LikeButton = ({ initialLikes }) => {
           {liked ? <PiHandsClappingFill /> : <PiHandsClapping />}
         </motion.div>
       </button>
-      <div className="ml-2 pl-5">{likes} {likes === 1 ? 'clap' : 'claps'}</div>
+      <div className="ml-2 pl-5 text-xl">{likes} {likes === 1 ? 'clap' : 'claps'}</div>
     </div>
   );
 };

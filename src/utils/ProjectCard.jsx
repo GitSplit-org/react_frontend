@@ -30,7 +30,7 @@ function ProjectCard({ name, about, image, edit, code, note, visit }) {
           <div className="flex justify-center">
             {edit && (
               <a href={edit} target="_blank" rel="noreferrer">
-                <button className="inline-flex text-white bg-purple-700 border-0 py-2 px-5 focus:outline-none font-medium items-center justify-center gap-1 hover:bg-purple-500  rounded text-lg">
+                <button className="inline-flex text-white bg-cyan-700 border-0 py-2 px-5 focus:outline-none font-medium items-center justify-center gap-1 hover:bg-purple-500  rounded text-lg">
                   edit <BiLinkExternal />
                 </button>
               </a>

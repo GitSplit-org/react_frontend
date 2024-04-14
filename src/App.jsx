@@ -49,7 +49,7 @@ function App() {
   const queryClient = new QueryClient();
   return (
     <>
-      <div className="bg-[#171123]">
+      <div className="bg-black">
         <QueryClientProvider client={queryClient}>
           <ThirdwebProvider
             activeChain="mumbai"
