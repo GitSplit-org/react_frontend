@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="  bg-transparent    shadow-sm  rounded-full z-4  p-1">
+    <nav className="bg-transparent shadow-sm rounded-full z-4 p-1 relative">
       <div className="container mx-auto px-4 py-2 md:flex md:items-center md:justify-between">
         {/* GitSplit Logo and Hamburger Icon */}
         <div className="flex items-center justify-between w-full md:w-auto">
@@ -26,7 +26,7 @@ const Navbar = () => {
             <img
               src="https://flowbite.com/docs/images/logo.svg"
               className="h-8"
-              alt="Flowbite Logo" 
+              alt="Flowbite Logo"
             />
             <div className="text-xl font-semibold space-x-2 dark:text-white">
               <span>GitSplit</span>
@@ -54,7 +54,7 @@ const Navbar = () => {
         </div>
 
         {/* Navbar Links */}
-        <div className="hidden md:flex flex-col md:flex-row   md:items-center md:space-x-2 mt-3 md:mt-0 gap-9">
+        <div className="hidden md:flex flex-col md:flex-row md:items-center md:space-x-2 mt-3 md:mt-0 gap-9">
           <Link
             to="/addproject"
             className={`transition duration-300 ease-in-out ${
@@ -88,7 +88,10 @@ const Navbar = () => {
           <div>
             <ConnectWallet theme={"dark"} modalSize={"wide"} />
           </div>
-          <Link to="/profile" onClick={() => handleButtonClick("login")}>
+          <Link
+            to="/profile"
+            onClick={() => handleButtonClick("login")}
+          >
             <FontAwesomeIcon
               className="pl-3"
               icon={faUser}
@@ -100,50 +103,52 @@ const Navbar = () => {
 
         {/* Responsive Menu */}
         {showMenu && (
-          <div className="md:hidden mt-2 flex flex-col space-y-2">
-            <Link
-              to="/addproject"
-              className="text-gray-800 dark:text-white hover:text-gray-600"
-              onClick={() => {
-                toggleMenu();
-                handleButtonClick("add");
-              }}
-            >
-              Add Project
-            </Link>
-            <Link
-              to="/projects"
-              className="text-gray-800 dark:text-white hover:text-gray-600"
-              onClick={() => {
-                toggleMenu();
-                handleButtonClick("support");
-              }}
-            >
-              Explore
-            </Link>
-            <Link
-              to="/login"
-              className="text-gray-800 dark:text-white hover:text-gray-600"
-              onClick={() => {
-                toggleMenu();
-                handleButtonClick("login");
-              }}
-            >
-              Login
-            </Link>
-            <div>
-              <ConnectWallet theme={"dark"} modalSize={"wide"} />
+          <div className="md:hidden absolute top-16 left-0 right-0  text-right bg-transparent shadow-md py-2 rounded-lg z-10">
+            <div className="flex flex-col space-y-2">
+              <Link
+                to="/addproject"
+                className="text-gray-800 dark:text-white hover:text-gray-600"
+                onClick={() => {
+                  toggleMenu();
+                  handleButtonClick("add");
+                }}
+              >
+                Add Project
+              </Link>
+              <Link
+                to="/projects"
+                className="text-gray-800 dark:text-white hover:text-gray-600"
+                onClick={() => {
+                  toggleMenu();
+                  handleButtonClick("support");
+                }}
+              >
+                Explore
+              </Link>
+              <Link
+                to="/login"
+                className="text-gray-800 dark:text-white hover:text-gray-600"
+                onClick={() => {
+                  toggleMenu();
+                  handleButtonClick("login");
+                }}
+              >
+                Login
+              </Link>
+              <div>
+                <ConnectWallet theme={"dark"} modalSize={"wide"} />
+              </div>
+              <Link
+                to="/profile"
+                className="text-gray-800 dark:text-white hover:text-gray-600"
+                onClick={() => {
+                  toggleMenu();
+                  handleButtonClick("login");
+                }}
+              >
+                Profile
+              </Link>
             </div>
-            <Link
-              to="/profile"
-              className="text-gray-800 dark:text-white hover:text-gray-600"
-              onClick={() => {
-                toggleMenu();
-                handleButtonClick("login");
-              }}
-            >
-              Profile
-            </Link>
           </div>
         )}
       </div>
