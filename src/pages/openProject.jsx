@@ -2,20 +2,18 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SocialDropdown from '../utils/socialDropdown';
-import { faDonate ,faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-
-
+import SocialDropdown from "../utils/socialDropdown";
+import {
+  faDonate,
+  faArrowUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
 
 import LikeButton from "../utils/likebutton";
 import {
   faInstagram,
   faFacebook,
   faXTwitter,
-  
   faSquareXTwitter,
-  
-
 } from "@fortawesome/free-brands-svg-icons";
 import Navbar from "../components/navbar";
 import { ethers } from "ethers";
@@ -27,7 +25,7 @@ const ProjectPage = () => {
   //   abi,
   //   "0x49cfeE607B35Af7d3d8D957Be30601a2576FC487"
   // );
-  const[loading , setloading]=useState(true)
+  const [loading, setloading] = useState(true);
   const [project, setProject] = useState(null);
   const [contributors, setContributors] = useState([]);
   const [searchParams] = useSearchParams();
@@ -59,7 +57,6 @@ const ProjectPage = () => {
       );
       const contributorsData = responseContributors.data;
       const totalContributorsCount = contributorsData.length;
-     
 
       // Calculate total number of commits
       const totalCommits = contributorsData.reduce(
@@ -79,12 +76,10 @@ const ProjectPage = () => {
           ).toFixed(2),
         })
       );
-      
-      
 
       console.log(contributorsWithPercentage);
       setContributors(contributorsWithPercentage);
-      setTotalContributors(totalContributorsCount); 
+      setTotalContributors(totalContributorsCount);
     } catch (error) {
       console.error("Error fetching repository data:", error);
       // setRepoData(null);
@@ -104,7 +99,6 @@ const ProjectPage = () => {
     } catch (error) {
       console.error("Error fetching project:", error);
     }
-    
   };
 
   useEffect(() => {
@@ -164,130 +158,119 @@ const ProjectPage = () => {
   if (!project) {
     return <div className="bg-black text-white min-h-screen">Loading...</div>;
   }
-  if(loading){
+  if (loading) {
     <>
-    <div className="bg-cyan-400"> </div>
-    </>
+      <div className="bg-cyan-400"> </div>
+    </>;
   }
 
   return (
     <>
-    <div>
-   
-      
-      <div className=" p-5  ">
-      <Navbar />
-      <div className=" text-white max-h-full bg-black rounded-[50px] p-2 mt-5 mr-16 ml-16 ">
-        {/* Cover Photo */}
-        <div
-  className="h-50 bg-cover pl-5 pt-5 bg-center bg-gray-800 rounded-[30px] relative"
-  style={{ backgroundImage: `url(${project.image})` }}
->
-  {/* Fade-out overlay */}
-  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1E1E1E]  "></div>
+      <div>
+        <div className=" p-5  ">
+          <Navbar />
+          <div className=" text-white max-h-full bg-black rounded-[50px] p-2 mt-5 mr-16 ml-16 ">
+            {/* Cover Photo */}
+            <div
+              className="h-50 bg-cover pl-5 pt-5 bg-center bg-gray-800 rounded-[30px] relative"
+              style={{ backgroundImage: `url(${project.image})` }}
+            >
+              {/* Fade-out overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1E1E1E]  "></div>
 
-  {/* Profile Picture */}
-  <div className="mx-10 mt-52   h-72 relative z-10  flex flex-col justify-end pb-2 ">
-  <h1 className="text-[80px]   font-bold">{project.name}</h1>
-    {/* <img
-      src={project.image}
-      alt="Profile"
-      className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
-    /> */}
-  </div>
-</div>
-<div className="flex  bg-gradient-to-b bg-[#1E1E1E] rounded-bl-[30px]">
-  
-      <div className="flex-1 overflow-y-auto scroll-smooth focus:scroll-auto h-screen mx-10 ">
-        {/* Left side content */}
-        <div className="p-4">
-          <h1 className="text-[32px] font-semibold text-cyan-200 pt-10 w-auto">Where Contributions Matter, Funds Flow Fairly</h1>
-          <div className="mt-4 flex  font-bold">
-            <div  className="text-md text-cyan-400 w-1/3">
-              Category<br/>
-
-              <div className="text-white">Blockchain</div>
+              {/* Profile Picture */}
+              <div className="mx-10 mt-52   h-72 relative z-10  flex flex-col justify-end pb-2 ">
+                <h1 className="text-[80px]   font-bold">{project.name}</h1>
+              </div>
             </div>
-            <div className="text-md text-cyan-400 w-1/3">
-              Published 
-              <div className="text-white">04/03/2024</div>
-            </div>
-            <div className="text-md text-cyan-400 w-1/3">
-             contributors<br/>
-             <div  className="text-white">{totalContributors}</div>
-             
-            </div>
-            </div>
-            <div className="h-auto pt-10"> 
-            <div className="text-[32px] font-semibold">Description </div>
-            <div className="p-2">{project.description}</div>
-
-            
-            
-             </div>
-        </div>
-      </div>
-      
-
-      <div className="w-1/3 h-screen p-4  bg-[#1E1E1E]  rounded-b-2xl   ">
-        {/* Right side content */}
-        <div className="pt-10 flex justify-center items-center gap-5 ">
-          <div className="p-1 w-2/3 font-bold   bg-[#313338] rounded-lg"><LikeButton initialLikes={0}  /></div>
-          <div className="w-1/5 p-1 flex justify-center bg-[#313338] rounded-lg">
-
-          <FontAwesomeIcon icon={faXTwitter} className="text-4xl p-1.5 rounded-lg" /></div>
-
-        
-          <div className="p-1 w-1/5  bg-[#313338] flex justify-center rounded-lg">
-            <SocialDropdown/>
-           
-          </div>
-        </div>
-      
-       
-        
-        <div className="flex text-2xl  items-center mt-5  rounded-lg  bg-[#313338]  justify-center ">
-       
-      <button
-        onClick={handleDonateButtonClick}
-        className=" bg-[#313338] text-white p-5 w-full   rounded-lg hover:bg-teal-800 transition duration-300  flex gap-20 justify-evenly items-center"
-      >
-         <FontAwesomeIcon icon={faDonate}  className="" />
-         {/* Donate Icon */}
-        Donate
-        <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-      </button>
-     
-    </div>
-    <div className="px-6 py-4 ">
-              <h2 className="text-lg font-semibold mb-2">Contributors</h2>
-              <ul>
-                {contributors.map((contributor, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center py-2 border-b border-gray-700"
-                  >
-                    <img
-                      src={contributor.contributor.avatar_url}
-                      alt={contributor.login}
-                      className="w-10 h-10 rounded-full mr-4"
-                    />
-                    <div>
-                      <p className="font-semibold">{contributor.login}</p>
-                      <p className="text-gray-400">
-                        {contributor.contributions} contributions
-                      </p>
+            <div className="flex  bg-gradient-to-b bg-[#1E1E1E] rounded-b-[50px]">
+              <div className="flex-1 overflow-y-auto scroll-smooth focus:scroll-auto h-screen mx-10 ">
+                {/* Left side content */}
+                <div className="p-4">
+                  <h1 className="text-[32px] font-semibold text-cyan-200 pt-10 w-auto">
+                    Where Contributions Matter, Funds Flow Fairly
+                  </h1>
+                  <div className="mt-4 flex  font-bold">
+                    <div className="text-md text-cyan-400 w-1/3">
+                      Category
+                      <br />
+                      <div className="text-white">Blockchain</div>
                     </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-        
-      </div>
-    </div>
-  
+                    <div className="text-md text-cyan-400 w-1/3">
+                      Published
+                      <div className="text-white">04/03/2024</div>
+                    </div>
+                    <div className="text-md text-cyan-400 w-1/3">
+                      contributors
+                      <br />
+                      <div className="text-white">{totalContributors}</div>
+                    </div>
+                  </div>
+                  <div className="h-auto pt-10">
+                    <div className="text-[32px] font-semibold">
+                      Description{" "}
+                    </div>
+                    <div className="p-2">{project.description}</div>
+                  </div>
+                </div>
+              </div>
 
-        {/* <div className="container mx-auto  py-12 pt-20">
+              <div className="w-1/3 h-screen p-4  bg-[#1E1E1E] rounded-b-[50px]  ">
+                {/* Right side content */}
+                <div className="pt-10 flex justify-center items-center gap-5 ">
+                  <div className="p-1 w-2/3 font-bold   bg-[#313338] rounded-lg">
+                    <LikeButton initialLikes={0} />
+                  </div>
+                  <div className="w-1/5 p-1 flex justify-center bg-[#313338] rounded-lg">
+                    <FontAwesomeIcon
+                      icon={faXTwitter}
+                      className="text-4xl p-1.5 rounded-lg"
+                    />
+                  </div>
+
+                  <div className="p-1 w-1/5  bg-[#313338] flex justify-center rounded-lg">
+                    <SocialDropdown />
+                  </div>
+                </div>
+
+                <div className="flex text-2xl  items-center mt-5  rounded-lg  bg-[#313338]  justify-center ">
+                  <button
+                    onClick={handleDonateButtonClick}
+                    className=" bg-[#313338] text-white p-5 w-full   rounded-lg hover:bg-teal-800 transition duration-300  flex gap-20 justify-evenly items-center"
+                  >
+                    <FontAwesomeIcon icon={faDonate} className="" />
+                    {/* Donate Icon */}
+                    Donate
+                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                  </button>
+                </div>
+                <div className="px-6 py-4 ">
+                  <h2 className="text-lg font-semibold mb-2">Contributors</h2>
+                  <ul>
+                    {contributors.map((contributor, index) => (
+                      <li
+                        key={index}
+                        className="flex items-center py-2 border-b border-gray-700"
+                      >
+                        <img
+                          src={contributor.contributor.avatar_url}
+                          alt={contributor.login}
+                          className="w-10 h-10 rounded-full mr-4"
+                        />
+                        <div>
+                          <p className="font-semibold">{contributor.login}</p>
+                          <p className="text-gray-400">
+                            {contributor.contributions} contributions
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* <div className="container mx-auto  py-12 pt-20">
           <div className="max-w-4xl mx-auto bg-gray-900 rounded-lg shadow-md overflow-hidden">
             <div className="px-6 py-4">
               <div className="flex items-center justify-between">
@@ -349,48 +332,48 @@ const ProjectPage = () => {
             </div>
           </div>
         </div> */}
-        {/* Donation Button */}
-        
-        {/* Donation Form Overlay */}
-        {isDonationFormOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex  justify-center items-center">
-            <form
-              onSubmit={handleDonateFormSubmit}
-              className="bg-gray-800  rounded-lg shadow-lg w-1/3  h-1/3 flex flex-col"
-            >
-              <div className="m-5">
-              <h2 className="text-2xl font-semibold text-white mb-4 ">
-                Donate
-              </h2>
-              <input
-                type="number"
-                value={donationAmount}
-                onChange={(e) => setDonationAmount(e.target.value)}
-                placeholder="Enter donation amount"
-                className=" text-black w-full border px-2 border-gray-700 rounded-md py-2  focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-              <div className="flex justify-end mt-20">
-                <button
-                  type="button"
-                  onClick={() => setIsDonationFormOpen(false)}
-                  className="text-gray-400 hover:text-gray-200 mr-4"
+            {/* Donation Button */}
+
+            {/* Donation Form Overlay */}
+            {isDonationFormOpen && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex  justify-center items-center">
+                <form
+                  onSubmit={handleDonateFormSubmit}
+                  className="bg-[#1E1E1E] rounded-lg shadow-lg w-1/3  h-1/3 flex flex-col"
                 >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
-                >
-                  Confirm
-                </button>
+                  <div className="m-5 ">
+                    <h2 className="text-2xl font-semibold text-white mb-4 ">
+                      Donate
+                    </h2>
+                    <input
+                      type="number"
+                      value={donationAmount}
+                      onChange={(e) => setDonationAmount(e.target.value)}
+                      placeholder="Enter donation amount"
+                      className=" text-black w-full border px-2  border-gray-700 rounded-md py-2  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                    <div className="flex justify-end mt-20">
+                      <button
+                        type="button"
+                        onClick={() => setIsDonationFormOpen(false)}
+                        className="text-gray-400 hover:text-gray-200 mr-4"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="bg-[#3d3d3d] text-white py-2 px-4 rounded-md hover:bg-teal-300 transition duration-300"
+                      >
+                        Confirm
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
-              </div>
-            </form>
+            )}
           </div>
-        )}
-      </div>
-      </div>
+        </div>
       </div>
     </>
   );

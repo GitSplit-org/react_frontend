@@ -6,19 +6,29 @@ import Fund from "../assets/Decentralized.svg";
 import Wheel from "../assets/wheel.svg";
 import circle from "../assets/img-PnJF8EabIhtdtaxj3RntNOBT-removebg-preview.png";
 import mobile from "../assets/Screenshot_20240414_155130.png";
+import secure from "../assets/icons8-secure-64.png"
+import showcase from "../assets/Desktop.svg"
 
 import {
-  Animator,
   ScrollContainer,
   ScrollPage,
   batch,
+  Fade,
   FadeIn,
+  Move,
+  MoveIn,
+  MoveOut,
+  Sticky,
+  StickyIn,
   ZoomIn,
+  Animation,
+  Animator
 } from "react-scroll-motion";
 // import { GlobeDemo } from "../components/demoglobe";
 
 const Home = () => {
   const Boxx = batch(FadeIn(), ZoomIn());
+  const FadeUp = batch(Fade(), Move(), Sticky());
 
   return (
     <>
@@ -163,7 +173,7 @@ const Home = () => {
       </div>
       <div className="flex  ">
         <div className="w-1/2 h-1/2  text-white  flex   flex-col  justify-center px-32  text-start ">
-          <img src={Blockchain} alt="icon" width={60} className=" flex  mb-5" />
+          <img src={secure} alt="icon" width={60} className=" flex  mb-5" />
           <p className=" font-extrabold text-4xl ">Secure Transactions</p>
           <p className="mt-5 text-justify text-xl text-gray-400 ">
             {" "}
@@ -173,7 +183,7 @@ const Home = () => {
           </p>
         </div>
         <div className="w-1/2 h-1/2  text-white  flex   flex-col  justify-center px-32  text-start  ">
-          <img src={Blockchain} alt="icon" width={60} className=" flex  mb-5" />
+          <img src={showcase} alt="icon" width={60} className=" flex  mb-5" />
           <p className=" font-extrabold text-4xl ">Project Showcase</p>
           <p className="mt-5 text-justify text-xl text-gray-400 ">
             {" "}
@@ -184,7 +194,10 @@ const Home = () => {
           </p>
         </div>
       </div>
+     
+           
       <div className="h-screen flex ">
+     
         <div className="flex-1    mt-28 ">
           <div className="  flex justify-start px-24">
             <p className=" flex  mt-10 text-xl font-semibold ">Comming Soon</p>
@@ -194,15 +207,24 @@ const Home = () => {
             <span className=" text-teal-500"> Desktop & Mobile</span>
           </div>
         </div>
+   
+       
         <div className="flex-1  max-w-1/2 relative overflow-hidden">
           <img
             src={circle}
             className="spin-img opacity-20 absolute "
             alt="Circle"
           />
-          <img src={mobile}  width={300} className="absolute bottom-0 right-60"/>
+          
+          <img src={mobile}  width={350} className="absolute bottom-0 right-52"/>
+         
+         
         </div>
+      
+        
+       
       </div>
+     
     </>
   );
 };
