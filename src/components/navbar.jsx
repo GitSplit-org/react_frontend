@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import logo from "../assets/icon.png"
 
 const Navbar = () => {
   const [activeButton, setActiveButton] = useState(null);
@@ -15,7 +17,7 @@ const Navbar = () => {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
-
+ 
   return (
     <nav className="bg-transparent shadow-sm rounded-full z-4 p-1 relative">
       <div className="container mx-auto px-4 py-2 md:flex md:items-center md:justify-between">
@@ -24,9 +26,11 @@ const Navbar = () => {
           {/* GitSplit Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              className="h-8"
-              alt="Flowbite Logo"
+              src={logo}
+              width={62}
+              
+              className=""
+              // alt="Flowbite Logo"
             />
             <div className="text-xl font-semibold space-x-2 dark:text-white">
               <span>GitSplit</span>
