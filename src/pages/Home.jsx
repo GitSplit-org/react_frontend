@@ -64,7 +64,7 @@ const Home = () => {
               <p className="text-6xl  font-black h-28 p-5  text-[#33e0db] ">
                 Open Source with GitSplit
               </p>
-              <burtton className="p-4 font-bold text-xl"> LEARN MORE </burtton>
+              <button className="p-4 font-bold text-xl"> LEARN MORE </button>
             </div>
           </div>
         </div>
