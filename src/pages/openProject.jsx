@@ -116,7 +116,7 @@ const ProjectPage = () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
-      "0x49cfeE607B35Af7d3d8D957Be30601a2576FC487",
+      `${import.meta.env.VITE_CONTRACT_ADDRESS}`,
       abi,
       signer
     );

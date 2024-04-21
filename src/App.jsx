@@ -53,8 +53,8 @@ function App() {
       <div className="bg-black">
         <QueryClientProvider client={queryClient}>
           <ThirdwebProvider
-            // activeChain={PolygonAmoyTestnet}
-            activeChain="mumbai"
+            activeChain={PolygonAmoyTestnet}
+            // activeChain="mumbai"
             clientId="1971b4ffc7b4410e350ba34c8694d7df"
             supportedWallets={[
               metamaskWallet(),

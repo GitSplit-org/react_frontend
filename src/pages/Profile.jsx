@@ -42,7 +42,7 @@ const ProfilePage = () => {
     setAddress(address);
     checkUser();
     setLoading(false);
-  }, [address, checkUser]);
+  }, [address]);
 
   async function checkUser() {
     await supabase.auth.getUser().then((res) => {
@@ -76,7 +76,7 @@ const ProfilePage = () => {
       // Create a contract instance
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
-        "0x49cfeE607B35Af7d3d8D957Be30601a2576FC487",
+        `${import.meta.env.VITE_CONTRACT_ADDRESS}`,
         abi,
         signer
       );
@@ -97,13 +97,16 @@ const ProfilePage = () => {
       // Create a contract instance
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
-        "0x49cfeE607B35Af7d3d8D957Be30601a2576FC487",
+        `${import.meta.env.VITE_CONTRACT_ADDRESS}`,
         abi,
         signer
       );
       // Call the getBalance function of the contract
       const wallet = await contract.getAddressForUsername(username);
-      if (wallet == Address) {
+      console.log(wallet);
+      if (wallet == 0x0000000000000000000000000000000000000000) {
+        setWalletLinked(false);
+      } else if (wallet == Address) {
         setWalletLinked(true);
       }
     } catch (error) {
@@ -150,7 +153,7 @@ const ProfilePage = () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
-      "0x49cfeE607B35Af7d3d8D957Be30601a2576FC487",
+      `${import.meta.env.VITE_CONTRACT_ADDRESS}`,
       abi,
       signer
     );
@@ -245,7 +248,7 @@ const ProfilePage = () => {
                   <div className="flex">
                     <TextRevealCard
                       text="Revel Your wallet address"
-                      revealText={`  ${Address}`}
+                      revealText={`${Address}`}
                       className="mr-2 mt-3"
                     />
                     <button onClick={copyToClipboard}>
