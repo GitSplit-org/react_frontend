@@ -6,8 +6,8 @@ import Fund from "../assets/Decentralized.svg";
 import Wheel from "../assets/wheel.svg";
 import circle from "../assets/img-PnJF8EabIhtdtaxj3RntNOBT-removebg-preview.png";
 import mobile from "../assets/Screenshot_20240414_155130.png";
-import secure from "../assets/icons8-secure-64.png"
-import showcase from "../assets/Desktop.svg"
+import secure from "../assets/icons8-secure-64.png";
+import showcase from "../assets/Desktop.svg";
 
 import {
   ScrollContainer,
@@ -22,7 +22,7 @@ import {
   StickyIn,
   ZoomIn,
   Animation,
-  Animator
+  Animator,
 } from "react-scroll-motion";
 // import { GlobeDemo } from "../components/demoglobe";
 
@@ -64,7 +64,7 @@ const Home = () => {
               <p className="text-6xl  font-black h-28 p-5  text-[#33e0db] ">
                 Open Source with GitSplit
               </p>
-              <burtton className="p-4 font-bold text-xl"> LEARN MORE </burtton>
+              <button className="p-4 font-bold text-xl"> LEARN MORE </button>
             </div>
           </div>
         </div>
@@ -194,10 +194,8 @@ const Home = () => {
           </p>
         </div>
       </div>
-     
-           
+
       <div className="h-screen flex ">
-     
         <div className="flex-1    mt-28 ">
           <div className="  flex justify-start px-24">
             <p className=" flex  mt-10 text-xl font-semibold ">Comming Soon</p>
@@ -207,24 +205,21 @@ const Home = () => {
             <span className=" text-teal-500"> Desktop & Mobile</span>
           </div>
         </div>
-   
-       
+
         <div className="flex-1  max-w-1/2 relative overflow-hidden">
           <img
             src={circle}
             className="spin-img opacity-20 absolute "
             alt="Circle"
           />
-          
-          <img src={mobile}  width={350} className="absolute bottom-0 right-52"/>
-         
-         
+
+          <img
+            src={mobile}
+            width={350}
+            className="absolute bottom-0 right-52"
+          />
         </div>
-      
-        
-       
       </div>
-     
     </>
   );
 };
